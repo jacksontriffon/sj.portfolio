@@ -5,7 +5,7 @@
 </script>
 
 <nav class="header">
-    <NavButton buttonText="SJ's Portfolio" />
+    <NavButton highlighted={true} buttonText="SJ's Portfolio" />
     <div></div>
     <NavButton buttonText="About" />
     <div></div>
