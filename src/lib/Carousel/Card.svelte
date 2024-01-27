@@ -54,7 +54,7 @@
 
     h1 span {
         color: var(--neutral-500);
-        font-size: 1.5rem;
+        /* font-size: 1.5rem; */
     }
     h1 {
         padding: 0px 32px;

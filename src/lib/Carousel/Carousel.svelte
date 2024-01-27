@@ -30,16 +30,17 @@
     <p>{currentProjectIndex + 1} / {projects.length}</p>
     <div class="arrow-container">
         <button 
-            disabled={currentProjectIndex <= 0}
-            on:click={(_e) => {
-                currentProjectIndex--
-                moveCardsAnimation('left', currentProjectIndex, cardsAnimationState)
-            }}
+        hidden={currentProjectIndex <= 0}
+        on:click={(_e) => {
+            currentProjectIndex--
+            moveCardsAnimation('left', currentProjectIndex, cardsAnimationState)
+        }}
         >
             {"<"}
         </button>
+        <div></div>
         <button 
-            disabled={currentProjectIndex >= lastProjectIndex}
+            hidden={currentProjectIndex >= lastProjectIndex}
             on:click={(_e) => {
                 currentProjectIndex++
                 moveCardsAnimation('right', currentProjectIndex, cardsAnimationState)
@@ -51,7 +52,7 @@
 </div>
 
 <style>
-    div {
+    .carousel {
         position: absolute;
         display: flex;
         top: 0;

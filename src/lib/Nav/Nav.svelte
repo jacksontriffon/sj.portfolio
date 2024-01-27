@@ -43,8 +43,8 @@
     }
 
     .divider {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         background: var(--neutral-500);
         border-radius: 50%;
     }

@@ -44,7 +44,7 @@ body {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.5rem;
 	line-height: 1.1;
 }
 
@@ -67,10 +67,10 @@ button {
 button:hover:enabled {
 	border-color: #646cff;
 }
-button:focus:enabled,
+/* button:focus:enabled,
 button:focus-visible:enabled {
 	outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 button:disabled {
 	cursor: not-allowed;
 }
