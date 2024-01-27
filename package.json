@@ -10,7 +10,6 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
-		"@slidy/core": "^3.7.6",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@tsconfig/svelte": "^5.0.2",
 		"@types/animejs": "^3.1.12",
@@ -23,7 +22,6 @@
 		"vite": "^5.0.8"
 	},
 	"dependencies": {
-		"@slidy/svelte": "^3.4.4",
 		"animejs": "^3.2.2"
 	}
 }
