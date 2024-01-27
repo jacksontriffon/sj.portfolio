@@ -1,61 +1,50 @@
+<!-- Carousel: Allows users to navigate between projects -->
 <script lang="ts">
     // JSON stored somewhere
     import {data} from '../../data/data'
     const projects = data.projects
-	import { onMount } from "svelte";
 	import Card from "./Card.svelte";
-
-    let cardsAnimationState: number[] = []
-    let initAnimation: () => void
-    let moveCardsAnimation: (direction: 'left' | 'right', distance?: number) => void
+    
+    // State
+    let currentProjectIndex: number
+    let lastProjectIndex = projects.length - 1
+    // Card Animation
+	import { onMount } from "svelte";
+	import { initAnimation, moveCardsAnimation } from './carouselAnimations';
+    let cardsAnimationState: number[] = projects.map((_val, i)=>{
+        // Set each card's initial distance
+        const distance = 600
+        return i * distance
+    })
     onMount(()=>{
-        // // When page is loaded
-        // initAnimation = () => {
-        //     anime.timeline({
-        //         targets: '.card',
-        //         easing: 'spring',
-        //         autoplay: true
-        //     }).add({    
-        //         translateX: function(_el: HTMLElement, i: number, _length: number) {
-        //             return 2000
-        //         },
-        //         // duration: 0,
-        //         scale: function(el: HTMLElement, i: number, _length: number) {
-        //             const closestElementIndex = cardsAnimationState.findIndex((val)=> val === 0)
-        //             const distanceFromCenter = Math.abs(closestElementIndex - i)
-        //             // Always show the closest in front of the rest
-        //             el.style.zIndex = String(length - distanceFromCenter)
-        //             const scaleDownWhenFurtherFromCenter = 1 - distanceFromCenter/length
-        //             return scaleDownWhenFurtherFromCenter
-        //         },
-        //         duration: 1000,
-        //         opacity: 1,
-        //         delay: anime.stagger(500),
-        //         easing: 'easeInQuad',
-        //         // autoplay: true,
-        //         // loop: true,
-        //     }).add({
-        //     })
-        // }
-
-        // Called by a button
-        
-        // moveCardsAnimation(500, 'right')
-        // initAnimation()
+        initAnimation()
+        currentProjectIndex = 0 // Triggers any function reacting to this variable (e.g. play the current video)
     })
     
 </script>
 
 <div class="carousel">
-    {#each projects as project}
-        <Card project={project} class='card' />
+    {#each projects as project, i}
+        <Card project={project} class='card' isCurrent={i === currentProjectIndex} />
     {/each}
-    <p>{projects.length}</p>
+    <p>{currentProjectIndex + 1} / {projects.length}</p>
     <div class="arrow-container">
-        <button on:click={(_e)=>moveCardsAnimation('left')}>
+        <button 
+            disabled={currentProjectIndex <= 0}
+            on:click={(_e) => {
+                currentProjectIndex--
+                moveCardsAnimation('left', currentProjectIndex, cardsAnimationState)
+            }}
+        >
             {"<"}
         </button>
-        <button on:click={(_e)=>moveCardsAnimation('right')}>
+        <button 
+            disabled={currentProjectIndex >= lastProjectIndex}
+            on:click={(_e) => {
+                currentProjectIndex++
+                moveCardsAnimation('right', currentProjectIndex, cardsAnimationState)
+            }}
+        >
             >
         </button>
     </div>
@@ -83,6 +72,8 @@
         z-index: 100;
         transition: all 0.5s;
         background-color: rgba(1, 1, 1, 0.2);
+        pointer-events: all;
+        padding: 8px 20px;
     }
 
     button:active {
@@ -94,5 +85,7 @@
         max-width: 800px;
         display: flex;
         justify-content: space-between;
+        pointer-events: none;
     }
+
 </style>

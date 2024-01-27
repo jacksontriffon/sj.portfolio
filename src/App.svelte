@@ -10,6 +10,7 @@
 
 <style>
 	main {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		justify-content: start;

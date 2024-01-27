@@ -37,7 +37,7 @@
         display: flex;
         gap: 16px;
         align-items: center;
-        position: fixed;
+        position: absolute;
         top: 40px;
         left: 40px;
     }

@@ -2,14 +2,16 @@ import anime from "animejs";
 
 type MoveCardAnimation = (
 	direction: "left" | "right",
-	distance?: number,
+	closestElementIndex: number,
 	cardsAnimationState?: number[],
+	distance?: number,
 ) => void;
 
 export const moveCardsAnimation: MoveCardAnimation = (
 	direction,
-	distance = 500,
+	closestElementIndex,
 	cardsAnimationState = [],
+	distance = 600,
 ) => {
 	anime({
 		targets: ".card",
@@ -23,7 +25,7 @@ export const moveCardsAnimation: MoveCardAnimation = (
 			} else {
 				// Already animated
 				const nextTranslation =
-					direction === "right"
+					direction === "left"
 						? cardsAnimationState[i] + distance
 						: cardsAnimationState[i] - distance;
 				cardsAnimationState[i] = nextTranslation;
@@ -32,11 +34,6 @@ export const moveCardsAnimation: MoveCardAnimation = (
 		},
 		duration: 1000,
 		scale: function (el: HTMLElement, i: number, length: number) {
-			const isFirstAnimation = cardsAnimationState.length === 0;
-			// if(isFirstAnimation) return
-			const closestElementIndex = cardsAnimationState.findIndex(
-				(val) => val === 0,
-			);
 			const distanceFromCenter = Math.abs(closestElementIndex - i);
 			// Always show the closest in front of the rest
 			el.style.zIndex = String(length - distanceFromCenter);
@@ -44,7 +41,27 @@ export const moveCardsAnimation: MoveCardAnimation = (
 				1 - distanceFromCenter / length;
 			return scaleDownWhenFurtherFromCenter;
 		},
-		delay: anime.stagger(50),
 		easing: "spring",
+	});
+};
+
+export const initAnimation = () => {
+	anime({
+		targets: ".card",
+		easing: "spring",
+		autoplay: true,
+		translateX: function (_el: HTMLElement, i: number, _length: number) {
+			const distance = 600;
+			return i * distance;
+		},
+		duration: 0,
+		scale: function (el: HTMLElement, i: number, length: number) {
+			const distanceFromCenter = i;
+			// Always show the closest in front of the rest
+			el.style.zIndex = String(length - distanceFromCenter);
+			const scaleDownWhenFurtherFromCenter =
+				1 - distanceFromCenter / length;
+			return scaleDownWhenFurtherFromCenter;
+		},
 	});
 };
