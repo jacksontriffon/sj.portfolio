@@ -3,6 +3,7 @@ export interface SiteData {
 }
 export type Project = {
 	title: string;
+	colour: string;
 	tagline: string;
 	description?: string;
 	link?: string;
@@ -28,34 +29,40 @@ export const data: SiteData = {
 	projects: [
 		{
 			title: "Sintax",
+			colour: "#5CFF46",
 			tagline: "an AI hacking sim",
 			tags: [],
-			video: "/Sintax-preview.mp4",
+			video: "/videos/Sintax-preview.mp4",
 		},
 		{
 			title: "Spitfire",
+			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
 			tags: [],
-			video: "/Spitfire-preview.mp4",
+			video: "/videos/Spitfire-preview.mp4",
 		},
 		{
 			title: "Spitfire",
+			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
 			tags: [],
-			video: "/Spitfire-preview.mp4",
+			video: "/videos/Spitfire-preview.mp4",
 		},
 		{
 			title: "Spitfire",
-			tagline: "a retro cozy puzzle game",
-			tags: [],
-		},
-		{
-			title: "Spitfire",
+			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
 			tags: [],
 		},
 		{
 			title: "Spitfire",
+			colour: "#DF4A57",
+			tagline: "a retro cozy puzzle game",
+			tags: [],
+		},
+		{
+			title: "Spitfire",
+			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
 			tags: [],
 		},

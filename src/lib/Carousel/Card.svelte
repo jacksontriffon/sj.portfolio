@@ -2,6 +2,7 @@
     export let isCurrent = false
     export let project: Project
 	import type { Project } from "../../data/data";
+	import { primaryColour } from "../../stores/colourStore";
 	import { videoSrc } from "../../stores/portfolioStore";
     
     // Video
@@ -10,6 +11,7 @@
         if(!video) return
         if(isCurrent && project.video){
             videoSrc.set(project.video)
+            primaryColour.set(project.colour)
             video.play() 
         } else {
             video.pause()
@@ -18,13 +20,22 @@
     $: isCurrent, updateVideo()
 </script>
 
-<article class={$$restProps.class}>
+<article class={$$restProps.class} style={!isCurrent ? "opacity: 0.3;" : ""}>
     <div class="bottom-right-shadow"></div>
     <h1>{project.title}, <span>{project.tagline}</span></h1>
-    <video width="80%" height="65%" loop bind:this={video}>
+    <video width="80%" height="65%" loop bind:this={video} autoplay muted>
         <source src={project.video} type="video/mp4" />
         <track kind="captions" />
     </video>
+    <div class="button-container">
+        <button 
+        style={`background-color:${project.colour};`} 
+        class="primary">
+            Go to site
+            <img src="/images/Arrow.svg" alt="">
+        </button>
+        <button class="secondary">See more...</button>
+    </div>
 </article>
 
 <style>
@@ -41,6 +52,7 @@
         justify-content: center;
         align-items: center;
         gap: 40px;
+        transition: opacity 0.3s;
     }
     
     .bottom-right-shadow {
@@ -54,7 +66,6 @@
 
     h1 span {
         color: var(--neutral-500);
-        /* font-size: 1.5rem; */
     }
     h1 {
         padding: 0px 32px;
@@ -65,5 +76,18 @@
         z-index: 10;
         border-radius: 20px;
         margin: 0 64px;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 24px;
+    }
+
+    .primary {
+        display: flex;
+        gap: 16px;
+        color: black;
+        font-weight: 700;
+        border: none;
     }
 </style>

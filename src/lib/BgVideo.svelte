@@ -4,7 +4,6 @@
     let source: HTMLSourceElement
     $: $videoSrc, updateVideo()
     const updateVideo = () => {
-        console.log($videoSrc)
         if(!video || !source) return
         if($videoSrc){
             source.src = $videoSrc

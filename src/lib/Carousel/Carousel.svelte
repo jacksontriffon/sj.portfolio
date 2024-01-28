@@ -9,18 +9,50 @@
     let currentProjectIndex: number
     let lastProjectIndex = projects.length - 1
     // Card Animation
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import { initAnimation, moveCardsAnimation } from './carouselAnimations';
     let cardsAnimationState: number[] = projects.map((_val, i)=>{
         // Set each card's initial distance
         const distance = 600
         return i * distance
     })
+
+    // Listen to arrow and wasd keys
+    // const keydownHandler = (e: KeyboardEvent) => {
+    //     let direction: "" | 'right' | 'left' = ""
+    //     switch(e.code){
+    //         case 'KeyD':
+    //         case 'ArrowRight':
+    //             direction = 'right'
+    //             break;
+    //         case 'KeyA':
+    //         case 'ArrowLeft':
+    //             direction = 'right'
+    //             break;                
+    //     }
+    //     // Handle edge cases
+    //     if(!direction) return
+    //     if (direction === 'left' && currentProjectIndex >= lastProjectIndex) return
+    //     if (direction === 'left' && currentProjectIndex <= 0) return
+    //     moveCards(direction)
+    // }
     onMount(()=>{
         initAnimation()
         currentProjectIndex = 0 // Triggers any function reacting to this variable (e.g. play the current video)
+
+        // window.addEventListener('keydown', keydownHandler)
     })
-    
+    // onDestroy(()=>{
+    //     window.removeEventListener('keydown', keydownHandler)
+    // })
+
+    const moveCards = (direction: 'right' | "left") => {
+        // Update state
+        if (direction === "right") currentProjectIndex++
+        else currentProjectIndex--
+        // Animate cards
+        moveCardsAnimation(direction, currentProjectIndex, cardsAnimationState)
+    }
 </script>
 
 <div class="carousel">
@@ -31,20 +63,14 @@
     <div class="arrow-container">
         <button 
         hidden={currentProjectIndex <= 0}
-        on:click={(_e) => {
-            currentProjectIndex--
-            moveCardsAnimation('left', currentProjectIndex, cardsAnimationState)
-        }}
+        on:click={() => moveCards('left')}
         >
             {"<"}
         </button>
         <div></div>
         <button 
             hidden={currentProjectIndex >= lastProjectIndex}
-            on:click={(_e) => {
-                currentProjectIndex++
-                moveCardsAnimation('right', currentProjectIndex, cardsAnimationState)
-            }}
+            on:click={() => moveCards('right')}
         >
             >
         </button>

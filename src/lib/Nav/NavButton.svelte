@@ -8,9 +8,15 @@
 </script>
 
 <button 
-    style="color:{highlighted ? 
-        $primaryColour : 'var(--neutral-500)'}; 
-        text-decoration: underline;"
+    style={`color:
+        ${highlighted 
+            ? $primaryColour 
+            : 'var(--neutral-500)'}; 
+        ${highlighted 
+            ? "text-decoration: underline;" 
+            : ""
+        }
+    `}
 >
     {buttonText}
 </button>
