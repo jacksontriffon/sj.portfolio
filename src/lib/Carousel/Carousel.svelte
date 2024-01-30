@@ -4,11 +4,15 @@
     import {data} from '../../data/data'
     const projects = data.projects
 	import Card from "./Card.svelte";
+
+    // Colour
+	import { primaryColour } from '../../stores/colourStore';
     
     // State
     let currentProjectIndex: number
     let lastProjectIndex = projects.length - 1
     // Card Animation
+	import { cardsMoving } from '../../stores/portfolioStore';
 	import { onDestroy, onMount } from "svelte";
 	import { initAnimation, moveCardsAnimation } from './carouselAnimations';
     let cardsAnimationState: number[] = projects.map((_val, i)=>{
@@ -52,6 +56,10 @@
         else currentProjectIndex--
         // Animate cards
         moveCardsAnimation(direction, currentProjectIndex, cardsAnimationState)
+        cardsMoving.set(true)
+        setTimeout(()=>{
+            cardsMoving.set(false)
+        }, 750)
     }
 </script>
 
@@ -59,11 +67,11 @@
     {#each projects as project, i}
         <Card project={project} class='card' isCurrent={i === currentProjectIndex} />
     {/each}
-    <p>{currentProjectIndex + 1} / {projects.length}</p>
+    <p style={`color: ${$primaryColour}`}>{currentProjectIndex + 1} / {projects.length}</p>
     <div class="arrow-container">
         <button 
-        hidden={currentProjectIndex <= 0}
-        on:click={() => moveCards('left')}
+            hidden={currentProjectIndex <= 0}
+            on:click={() => moveCards('left')}
         >
             {"<"}
         </button>
@@ -79,7 +87,7 @@
 
 <style>
     .carousel {
-        position: absolute;
+        position: relative;
         display: flex;
         top: 0;
         width: 100%;
@@ -92,6 +100,10 @@
     p {
         position: absolute;
         bottom: 8px;
+        font-weight: 700;
+        background-color: rgba(1, 1, 1, 0.1);
+        padding: 4px 8px;
+        border-radius: 8px;
     }
 
     button {
