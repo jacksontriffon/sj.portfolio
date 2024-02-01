@@ -63,7 +63,7 @@
     }
 </script>
 
-<div class="carousel">
+<div class="carousel" style="--project-color: {$primaryColour}">
     {#each projects as project, i}
         <Card project={project} class='card' isCurrent={i === currentProjectIndex} />
     {/each}
@@ -109,14 +109,24 @@
     button {
         font-size: 2rem;
         z-index: 100;
-        transition: all 0.5s;
+        transition: color border-color 0.2s;
         background-color: rgba(1, 1, 1, 0.2);
         pointer-events: all;
         padding: 8px 20px;
     }
 
     button:active {
-        background-color: var(--neutral-500);
+        color: black;
+        background-color: var(--project-color);
+    }
+    button:focus {
+        border-color: var(--project-color);
+        outline: 2px solid var(--project-color);
+    }
+
+    button:hover:enabled:not(button:active) {
+        color: var(--project-color);
+        border-color: var(--project-color);
     }
 
     .arrow-container {

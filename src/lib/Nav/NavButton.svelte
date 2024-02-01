@@ -8,14 +8,16 @@
 </script>
 
 <button 
-    style={`color:
+    style={`
+    color:
         ${highlighted 
             ? $primaryColour 
             : 'var(--neutral-500)'}; 
         ${highlighted 
             ? "text-decoration: underline;" 
             : ""
-        }
+        }; 
+    --project-colour: ${$primaryColour}
     `}
 >
     {buttonText}
@@ -31,5 +33,8 @@
         padding-right: 8px;
         padding-top: 4px;
         padding-bottom: 4px;
+    }
+    button:focus {
+        outline: 2px solid var(--project-colour);
     }
 </style>

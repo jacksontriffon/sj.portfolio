@@ -5,6 +5,7 @@
 	import type { Project } from "../../data/data";
 	import { primaryColour } from "../../stores/colourStore";
 	import { cardsMoving, videoSrc } from "../../stores/portfolioStore";
+	import Icon from "../Icon/Icon.svelte";
     
     // Video
     let video: HTMLVideoElement
@@ -13,9 +14,10 @@
         if(isCurrent && project.video){
             videoSrc.set(project.video)
             primaryColour.set(project.colour)
-            video.play() 
+            video.play()
         } else {
             video.pause()
+            if(flipped) flipCard()
         }
     }
     $: isCurrent, updateVideo()
@@ -59,7 +61,7 @@
     // Click
     let flipped = false
     let flipping = false
-    const showDetails = () => {
+    const flipCard = () => {
         flipping = true
         anime({
             targets: '#'+project.title+"video-side",
@@ -91,8 +93,11 @@
         <button 
             on:mouseenter={()=>handleHover(true)}
             on:mouseleave={()=>handleHover(false)}
-            on:click={()=>showDetails()}
-        ></button>
+            on:click={()=>flipCard()}
+            disabled={!isCurrent || flipped}
+        >
+            View more
+        </button>
         <video 
             class="card-bg-video" width="100%" height="100%" loop 
             bind:this={video} autoplay muted style={`opacity:${flipped}`}
@@ -106,23 +111,72 @@
         <h4 class="cta"><img src="/images/Play.svg" alt="">Press anywhere to start</h4>
     </div>
     <!-- Card Details -->
-    <section class={`details-container`} id={project.title+'details'}>
+    <section 
+        class={`details-container`} 
+        id={project.title+'details'} 
+        style={!flipped ? "display: none" : ''}
+    >
         <div class="card-shine"></div>
         <div class="bottom-right-shadow"></div>
         <div class="details-header">
             <h2 class="details-title">{project.title}</h2>
-            <img class="project-icon" src={project.icon.src} alt={project.icon.alt}>
+            <Icon color={project.colour} size="lg" name={project.icon} />
         </div>
         <div class="video-container">
             <video class="mini-video" width="auto" height="100%" loop bind:this={video} autoplay muted>
                 <source src={project.video} type="video/mp4" />
                 <track kind="captions" />
             </video>
-            <a href="/">{project.tag.text}</a>
+            <a
+                tabindex={!flipped || !isCurrent ? -1 : 0}
+                aria-disabled={!flipped || !isCurrent}
+                href="/"
+            >
+                {project.tag.text}
+            </a>
         </div>
         <div class="details-content-container">
             <p contenteditable="false" bind:innerText={project.description}></p>
-            <a href={project.link} class="primary">Go to site <img src='/public/images/Arrow.svg' alt="External link's arrow"></a>
+            <div class="highlights-container">
+                <div class="highlight-icons-container">
+                    {#each project.highlights as highlight}
+                        <div class="highlight-icon-row">
+                            {#each highlight.icons as icon}
+                             <Icon color={project.colour} size="m" name={icon} />
+                            {/each}
+                        </div>
+                    {/each}
+                </div>
+                <div class="highlight-titles-container">
+                    {#each project.highlights as highlight}                        
+                        {#if highlight.link}
+                            <a 
+                                class="highlight-link"
+                                tabindex={!flipped || !isCurrent ? -1 : 0}
+                                aria-disabled={!flipped || !isCurrent} 
+                                href={highlight.link}
+                            >
+                                {highlight.text}
+                                <div class="link-arrow-container">
+                                    <Icon name="Arrow" color={project.colour} size="xs" />
+                                </div>
+                            </a>
+                        {:else}
+                             <h6>{highlight.text}</h6>
+                        {/if}
+                    {/each}
+                </div>
+            </div>
+            <div class="project-details-footer">
+                <a 
+                    tabindex={!flipped || !isCurrent ? -1 : 0}
+                    aria-disabled={!flipped || !isCurrent}  
+                    href={project.link} 
+                    class="primary"
+                >
+                    Go to site <div class="link-arrow-container"><Icon name="Arrow" color="black" size="s" /></div>
+                </a>
+            </div>
         </div>
     </section>
 </article>
@@ -141,15 +195,16 @@
         border-radius: 20px;
         width: 100%;
         height: 100%;
-        /* display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px; */
         z-index: 10;
         background: none;
         border: none;
+        outline: none;
+        color: transparent;
     }
+    button:focus:not(button:hover) {
+        outline: 2px solid var(--project-colour);
+    }
+
     .bottom-right-shadow {
         width: 100%;
         height: 100%;
@@ -246,23 +301,13 @@
         /* initial state */
         opacity: 0;
         /* Bg */
-        background-color: rgba(0,0,0, 0.5);
+        background-color: rgba(24,24,24, 0.5); /* Neutral-900 */
         border-radius: 20px;
     }
-/* 
-    .details-container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        pointer-events: none;
-    } */
 
     .details-title {
         margin: 0;
+        font-size: 28px;
     }
 
     .details-header {
@@ -272,7 +317,14 @@
     }
 
     .project-icon{
-        fill: green;
+        color: green;
+        width: 40px;
+    }
+
+    .highlight-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
 
     .video-container {
@@ -280,14 +332,9 @@
         height: 200px;
         border: solid var(--project-colour) 2px;
         margin: 0 32px;
-
-    }
-    /* .video-container {
         position: relative;
-        width: 100%;
-        height: 100%;
     }
-     */
+
     .mini-video {
         width: 100%;
         object-fit: cover;
@@ -311,13 +358,51 @@
         justify-content: start;
         align-items: start;
         text-align: left;
+        height: 100%;
     }
 
-    
-    .button-container {
+    .highlights-container {
         display: flex;
         gap: 24px;
-        z-index: 5;
+    }
+
+    .highlight-icons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .highlight-icon-row {
+        display: flex;
+        gap: 12px;
+    }
+
+    .highlight-titles-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .highlight-link {
+        display: flex;
+        gap: 4px;
+        color: var(--project-colour);
+        text-decoration: underline;
+    }
+
+    h6 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+    }
+
+    .project-details-footer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: 32px;
     }
 
     .primary {
@@ -330,8 +415,9 @@
         background-color: var(--project-colour);
         padding: 8px 24px;
         border-radius: 12px;
+        justify-content: center
     }
-    .primary img {
-        width: 12px;
+    .link-arrow-container {
+        transform: translateY(2px);
     }
 </style>

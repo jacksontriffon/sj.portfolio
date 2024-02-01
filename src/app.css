@@ -68,10 +68,7 @@ button {
 button:hover:enabled {
 	border-color: #646cff;
 }
-/* button:focus:enabled,
-button:focus-visible:enabled {
-	outline: 4px auto -webkit-focus-ring-color;
-} */
+
 button:disabled {
 	cursor: not-allowed;
 }

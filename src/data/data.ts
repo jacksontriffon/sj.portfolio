@@ -1,3 +1,5 @@
+import type { IconName } from "../lib/Icon/icon";
+
 export interface SiteData {
 	projects: Project[];
 }
@@ -11,15 +13,12 @@ export type Project = {
 	highlights: Tag[];
 	githubLink?: string;
 	video?: string;
-	icon: {
-		src: string;
-		alt: string;
-	};
+	icon: IconName;
 };
 export type Tag = {
 	text: string;
 	link?: string;
-	icons: string[];
+	icons: IconName[];
 };
 // Unused currently
 export type VideoDetails = {
@@ -37,23 +36,24 @@ export const data: SiteData = {
 			colour: "#5CFF46",
 			tagline: "an AI hacking sim",
 			video: "/videos/Sintax-preview.mp4",
-			icon: {
-				src: "/images/GameController.svg",
-				alt: "Game Controller",
-			},
+			icon: "GameController",
 			tag: {
 				text: "Prototype",
 				icons: [],
 			},
 			highlights: [
-				{ text: "Godot Engine", icons: ["/images/Godot.svg"] },
+				{
+					text: "Godot Engine",
+					icons: ["Godot"],
+					link: "https://godotengine.org/",
+				},
 				{
 					text: "AI Cybersecurity LLMs",
-					icons: ["/images/OpenAI.svg", "/images/Terminal.svg"],
+					icons: ["OpenAI", "Terminal"],
 				},
 				{
 					text: "Desktop Only",
-					icons: ["/images/Desktop.svg"],
+					icons: ["Desktop"],
 				},
 			],
 			description:
@@ -66,16 +66,22 @@ export const data: SiteData = {
 			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
 			video: "/videos/Spitfire-preview.mp4",
-			icon: {
-				src: "/images/GameController.svg#GameController'",
-				alt: "Game Controller",
-			},
+			icon: "GameController",
 			tag: {
 				text: "GameJam",
 				icons: [],
 			},
 			highlights: [
-				{ text: "Godot Engine", icons: ["/images/Godot.svg"] },
+				{
+					text: "Godot Engine",
+					icons: ["Godot"],
+					link: "https://godotengine.org/",
+				},
+				{ text: "Puzzle Game", icons: ["Puzzle"] },
+				{
+					text: "For Desktop and Mobile",
+					icons: ["Desktop", "Phone"],
+				},
 			],
 		},
 	],
