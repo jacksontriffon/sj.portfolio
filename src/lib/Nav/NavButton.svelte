@@ -13,10 +13,6 @@
         ${highlighted 
             ? $primaryColour 
             : 'var(--neutral-500)'}; 
-        ${highlighted 
-            ? "text-decoration: underline;" 
-            : ""
-        }; 
     --project-colour: ${$primaryColour}
     `}
 >

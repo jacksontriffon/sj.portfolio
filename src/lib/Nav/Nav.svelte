@@ -18,7 +18,7 @@
                  highlighted={true} 
                  buttonText="SJ's Portfolio" />
          </div>
-         <div class="divider" transition:fly={{delay: 400, y: 20}}></div>
+         <!-- <div class="divider" transition:fly={{delay: 400, y: 20}}></div>
          <div transition:fly={{delay: 500, y: 20}}>
          <NavButton 
              buttonText="About" />
@@ -26,8 +26,8 @@
          <div class="divider" transition:fly={{delay: 600, y: 20}}></div>
          <div transition:fly={{delay: 700, y: 20}}>
          <NavButton 
-             buttonText="Contact" />
-         </div>
+             buttonText="Contact" /> -->
+         <!-- </div> -->
      </nav>
 {/if}
 
@@ -42,10 +42,10 @@
         left: 40px;
     }
 
-    .divider {
+    /* .divider {
         width: 6px;
         height: 6px;
         background: var(--neutral-500);
         border-radius: 50%;
-    }
+    } */
 </style>

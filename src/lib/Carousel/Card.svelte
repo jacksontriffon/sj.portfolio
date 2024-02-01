@@ -359,6 +359,7 @@
         align-items: start;
         text-align: left;
         height: 100%;
+        overflow-y: scroll;
     }
 
     .highlights-container {
@@ -402,6 +403,7 @@
         justify-content: center;
         width: 100%;
         margin-top: auto;
+        margin-top: 16px;
         margin-bottom: 32px;
     }
 
