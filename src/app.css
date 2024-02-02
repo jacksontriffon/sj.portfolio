@@ -72,3 +72,7 @@ button:hover:enabled {
 button:disabled {
 	cursor: not-allowed;
 }
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
