@@ -49,10 +49,14 @@
     // onDestroy(()=>{
     //     window.removeEventListener('keydown', keydownHandler)
     // })
-
+    let cardsCanMoveRight: boolean
+    $: cardsCanMoveRight = !(currentProjectIndex >= lastProjectIndex)
+    let cardsCanMoveLeft: boolean 
+    $: cardsCanMoveLeft = !(currentProjectIndex <= 0)
+    
     const moveCards = (direction: 'right' | "left") => {
         // Update state
-        if (direction === "right") currentProjectIndex++
+        if (direction === "left") currentProjectIndex++
         else currentProjectIndex--
         // Animate cards
         moveCardsAnimation(direction, currentProjectIndex, cardsAnimationState)
@@ -61,26 +65,51 @@
             cardsMoving.set(false)
         }, 750)
     }
+
+    // Swipe Gestures
+    import { swipe } from 'svelte-gestures'
+    const swipeHandler = (event: CustomEvent) => {
+        const {direction}: {
+            direction:  
+                'top' | 
+                'right' | 
+                'bottom' | 
+                'left', 
+            target: HTMLElement 
+        } = event.detail
+        
+        if(direction === 'left' && cardsCanMoveRight){
+            moveCards('left')
+        }
+        if(direction === 'right' && cardsCanMoveLeft){
+            moveCards('right')
+        }
+    }
 </script>
 
-<div class="carousel" style="--project-color: {$primaryColour}">
+<div 
+    class="carousel" 
+    style="--project-color: {$primaryColour}"
+    use:swipe={{timeframe: 300, minSwipeDistance: 60}}
+    on:swipe={swipeHandler}
+>
     {#each projects as project, i}
         <Card project={project} class='card' isCurrent={i === currentProjectIndex} />
     {/each}
     <p style={`color: ${$primaryColour}`}>{currentProjectIndex + 1} / {projects.length}</p>
     <div class="arrow-container">
         <button 
-            hidden={currentProjectIndex <= 0}
-            on:click={() => moveCards('left')}
+            hidden={!cardsCanMoveLeft}
+            on:click={() => moveCards('right')}
         >
             {"<"}
         </button>
         <div></div>
         <button 
-            hidden={currentProjectIndex >= lastProjectIndex}
-            on:click={() => moveCards('right')}
+            hidden={!cardsCanMoveRight}
+            on:click={() => moveCards('left')}
         >
-            >
+            {">"}
         </button>
     </div>
 </div>

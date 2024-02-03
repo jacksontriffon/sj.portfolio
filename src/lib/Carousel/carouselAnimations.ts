@@ -19,13 +19,13 @@ export const moveCardsAnimation: MoveCardAnimation = (
 			const isFirstAnimation = cardsAnimationState.length < i + 1;
 			if (isFirstAnimation) {
 				const firstTranslation =
-					direction === "right" ? i * distance : -i * distance;
+					direction === "left" ? i * distance : -i * distance;
 				cardsAnimationState[i] = firstTranslation;
 				return firstTranslation;
 			} else {
 				// Already animated
 				const nextTranslation =
-					direction === "left"
+					direction === "right"
 						? cardsAnimationState[i] + distance
 						: cardsAnimationState[i] - distance;
 				cardsAnimationState[i] = nextTranslation;
