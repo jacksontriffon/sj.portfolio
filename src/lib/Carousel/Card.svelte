@@ -108,7 +108,7 @@
         <div class="card-shine"></div>
         <div class="bottom-right-shadow"></div>
         <h3 class="project-title">{project.title}, <span>{project.tagline}</span></h3>
-        <h4 class="cta"><img src="/images/Play.svg" alt="">Press anywhere to start</h4>
+        <p class='cta'>Click me</p>
     </div>
     <!-- Card Details -->
     <section 
@@ -267,24 +267,15 @@
 
     .cta {
         z-index: 5;
-        -webkit-text-stroke: 1px black;
-        color: white;
-        text-shadow:
-            3px 3px 0 #000,
-            -1px -1px 0 #000,  
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
-        padding: 0px 32px;
+        color: var(--project-colour);
+        border: solid 1.5px var(--project-colour);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        padding: 4px 24px;
         margin: 0px;
         font-size: 16px;
-        margin-bottom: 80px;
-        display: flex;
-        gap: 8px;
-    }
-    .cta img {
-        width: 12px;
-        padding-bottom: 2px;
+        font-weight: 600;
+        margin-bottom: 40px;
     }
 
 
