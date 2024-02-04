@@ -162,9 +162,9 @@
 		<div class="details-content-container">
 			<p contenteditable="false" bind:innerText={project.description}></p>
 			<div class="highlights-container">
-				<div class="highlight-icons-container">
-					{#each project.highlights as highlight}
-						<div class="highlight-icon-row">
+				{#each project.highlights as highlight}
+					<div class="highlight-row">
+						<div class="highlight-icons">
 							{#each highlight.icons as icon}
 								<Icon
 									color={project.colour}
@@ -173,10 +173,6 @@
 								/>
 							{/each}
 						</div>
-					{/each}
-				</div>
-				<div class="highlight-titles-container">
-					{#each project.highlights as highlight}
 						{#if highlight.link}
 							<a
 								class="highlight-link"
@@ -196,8 +192,8 @@
 						{:else}
 							<h6>{highlight.text}</h6>
 						{/if}
-					{/each}
-				</div>
+					</div>
+				{/each}
 			</div>
 			<div class="project-details-footer">
 				<a
@@ -211,7 +207,6 @@
 					</div>
 				</a>
 			</div>
-			<!-- <div class="blur-bottom"></div> -->
 		</div>
 	</section>
 </article>
@@ -314,7 +309,6 @@
 	}
 
 	/* DETAILS */
-
 	.details-container {
 		position: absolute;
 		width: 100%;
@@ -339,17 +333,6 @@
 		display: flex;
 		padding: 24px 48px 0px 48px;
 		justify-content: space-between;
-	}
-
-	.project-icon {
-		color: green;
-		width: 40px;
-	}
-
-	.highlight-row {
-		display: flex;
-		align-items: center;
-		gap: 16px;
 	}
 
 	.video-container {
@@ -387,17 +370,17 @@
 		align-items: start;
 		text-align: left;
 		height: 100%;
-		overflow-y: scroll;
+		overflow-y: auto;
 		mask: linear-gradient(
 			to bottom,
 			rgba(0, 0, 0, 1) 0%,
 			rgba(0, 0, 0, 1) 80%,
-			rgba(0, 0, 0, 0) 95%
+			rgba(0, 0, 0, 0) 90%
 		);
 	}
 	/* Scrollbar style */
 	.details-content-container::-webkit-scrollbar {
-		width: 8px;
+		width: 4px;
 	}
 	.details-content-container::-webkit-scrollbar-track {
 		-webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
@@ -415,24 +398,21 @@
 
 	.highlights-container {
 		display: flex;
-		gap: 24px;
-	}
-
-	.highlight-icons-container {
-		display: flex;
 		flex-direction: column;
 		gap: 12px;
 	}
 
-	.highlight-icon-row {
+	.highlight-row {
 		display: flex;
+		align-items: center;
 		gap: 12px;
 	}
 
-	.highlight-titles-container {
+	.highlight-icons {
 		display: flex;
-		flex-direction: column;
-		gap: 12px;
+		row-gap: 4px;
+		column-gap: 12px;
+		flex-wrap: wrap;
 	}
 
 	.highlight-link {
@@ -471,23 +451,9 @@
 		justify-content: center;
 	}
 
-	.blur-bottom {
-		position: fixed;
-		bottom: -1px;
-		left: 0px;
-		border-radius: 50px;
-		overflow: hidden;
-		width: 100%;
-		height: 40px;
-		mask: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.25) 25%,
-			rgba(0, 0, 0, 0.5) 50%,
-			rgba(0, 0, 0, 1) 100%
-		);
-		backdrop-filter: blur(40px);
-		z-index: 10;
-		/* background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5)); */
+	@media only screen and (max-width: 350px) {
+		.link-arrow-container {
+			display: none;
+		}
 	}
 </style>
