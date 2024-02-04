@@ -6,6 +6,9 @@ export type IconName =
 	| "Terminal"
 	| "Phone"
 	| "Puzzle"
-	| "Arrow";
+	| "Arrow"
+	| "Angular"
+	| "Ionic"
+	| "Capacitor";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/

@@ -35,7 +35,7 @@ export const data: SiteData = {
 			title: "Sintax",
 			colour: "#5CFF46",
 			tagline: "an AI hacking sim",
-			video: "/videos/Sintax-preview.mp4",
+			video: "/videos/Sintax.mp4",
 			icon: "GameController",
 			tag: {
 				text: "Prototype",
@@ -65,12 +65,15 @@ export const data: SiteData = {
 			title: "Spitfire",
 			colour: "#DF4A57",
 			tagline: "a retro cozy puzzle game",
-			video: "/videos/Spitfire-preview.mp4",
+			video: "/videos/Spitfire.mp4",
 			icon: "GameController",
 			tag: {
 				text: "GameJam",
 				icons: [],
 			},
+			description:
+				"Explore a virtual realm filled with NPC hackers.\n\n\
+				Gain the skills required to enter hacking competitions like CTF’s.",
 			highlights: [
 				{
 					text: "Godot Engine",
@@ -83,6 +86,33 @@ export const data: SiteData = {
 					icons: ["Desktop", "Phone"],
 				},
 			],
+			link: "https://vyfrost.itch.io/spitfire",
+		},
+		{
+			title: "Wizit",
+			colour: "#e61996",
+			tagline: "easy credit for millennials",
+			video: "/videos/Wizit.mp4",
+			icon: "Phone",
+			tag: {
+				text: "Mobile App",
+				icons: [],
+			},
+			description:
+				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+			highlights: [
+				{
+					text: "Angular",
+					icons: ["Angular"],
+					// link: "https://godotengine.org/",
+				},
+				{ text: "Ionic & Capacitor", icons: ["Ionic", "Capacitor"] },
+				{
+					text: "Mobile Only",
+					icons: ["Phone"],
+				},
+			],
+			link: "https://wizit.money/",
 		},
 	],
 };

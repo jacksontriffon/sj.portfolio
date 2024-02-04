@@ -23,7 +23,6 @@
 	$: isCurrent, updateVideo();
 
 	// Hover
-
 	let callbackOnceMoved: NodeJS.Timeout | null = null;
 	const getRandomRotation = (): number => {
 		let rand = Math.random();
@@ -60,6 +59,7 @@
 			rotate: isHovering ? getRandomRotation() : 0,
 		});
 	};
+
 	// Click
 	let flipped = false;
 	let flipping = false;
@@ -91,6 +91,19 @@
 			flipping = false;
 		}, 1000);
 	};
+
+	// Details
+	let readMore = false;
+	const getDescription = (readMore: boolean, project: Project): string => {
+		if (!project.description) return "";
+		if (readMore) {
+			return project.description;
+		} else {
+			return project.description.slice(0, 100) + "...";
+		}
+	};
+	let descriptionVisible = getDescription(readMore, project);
+	$: descriptionVisible = getDescription(readMore, project);
 </script>
 
 <article
@@ -99,6 +112,7 @@
 >
 	<div class="video-side" id={project.title + "video-side"}>
 		<button
+			class="video-side-button"
 			on:mouseenter={() => handleHover(true)}
 			on:mouseleave={() => handleHover(false)}
 			on:click={() => flipCard()}
@@ -160,7 +174,24 @@
 			</a>
 		</div>
 		<div class="details-content-container">
-			<p contenteditable="false" bind:innerText={project.description}></p>
+			<div class="description-container">
+				<p contenteditable="false">
+					<!-- Generate <br> tags -->
+					{#if readMore}
+						{#each descriptionVisible.split("<br>") as textBeforeLineBreak}
+							<span>{textBeforeLineBreak}<br /></span>
+						{/each}
+					{:else}
+						{descriptionVisible}
+					{/if}
+					<button
+						style={readMore ? "display: block; margin: 0;" : ""}
+						on:click={() => (readMore = !readMore)}
+					>
+						{readMore ? "Read less" : "Read more"}
+					</button>
+				</p>
+			</div>
 			<div class="highlights-container">
 				{#each project.highlights as highlight}
 					<div class="highlight-row">
@@ -220,7 +251,7 @@
 		border-radius: 17px;
 		transition: opacity 0.3s;
 	}
-	button {
+	.video-side-button {
 		position: absolute;
 		border-radius: 20px;
 		width: 100%;
@@ -231,7 +262,7 @@
 		outline: none;
 		color: transparent;
 	}
-	button:focus:not(button:hover) {
+	.video-side-button:focus:not(.video-side-button:hover) {
 		outline: 2px solid var(--project-colour);
 	}
 
@@ -394,6 +425,20 @@
 	}
 	.details-content-container::-webkit-scrollbar-thumb:hover {
 		background: var(--project-colour);
+	}
+
+	.description-container {
+		font-size: 16px;
+	}
+
+	.description-container button {
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 700;
+		color: var(--project-color);
+		border: none;
+		padding: 0;
+		background: none;
 	}
 
 	.highlights-container {
