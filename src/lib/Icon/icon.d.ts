@@ -9,6 +9,10 @@ export type IconName =
 	| "Arrow"
 	| "Angular"
 	| "Ionic"
-	| "Capacitor";
+	| "Capacitor"
+	| "Download"
+	| "Nextjs"
+	| "TailwindCSS"
+	| "Vercel";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/

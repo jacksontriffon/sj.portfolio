@@ -2,50 +2,71 @@
 <script lang="ts">
 	import NavButton from "./NavButton.svelte";
 
-    // Transition
-    import { fly } from 'svelte/transition'
-    import { onMount } from 'svelte';
-    let isMounted = false
-    onMount(()=>{
-        isMounted = true
-    })
+	// Transition
+	import { fly } from "svelte/transition";
+	import { onMount } from "svelte";
+	import Icon from "../Icon/Icon.svelte";
+	let isMounted = false;
+	onMount(() => {
+		isMounted = true;
+	});
+
+	// Button Hover
+	let anchorTagColor = "var(--neutral-200)";
 </script>
 
 {#if isMounted}
-    <nav class="header">
-         <div transition:fly={{delay: 300, y: 20}}>
-             <NavButton
-                 highlighted={true} 
-                 buttonText="SJ's Portfolio" />
-         </div>
-         <!-- <div class="divider" transition:fly={{delay: 400, y: 20}}></div>
-         <div transition:fly={{delay: 500, y: 20}}>
-         <NavButton 
-             buttonText="About" />
-         </div>
-         <div class="divider" transition:fly={{delay: 600, y: 20}}></div>
-         <div transition:fly={{delay: 700, y: 20}}>
-         <NavButton 
-             buttonText="Contact" /> -->
-         <!-- </div> -->
-     </nav>
+	<nav class="header">
+		<div transition:fly={{ delay: 300, y: 20 }}>
+			<NavButton highlighted={true} buttonText="SJ's Portfolio" />
+		</div>
+		<div transition:fly={{ delay: 600, y: 20 }}>
+			<a
+				href="/documents/SJ's Resume.pdf"
+				download="SJs-resume.pdf"
+				on:mouseenter={() => {
+					anchorTagColor = "var(--neutral-200)";
+				}}
+				on:mouseleave={() => {
+					anchorTagColor = "var(--neutral-500)";
+				}}
+			>
+				Download Resume
+				<Icon name="Download" size="m" color={anchorTagColor} />
+			</a>
+		</div>
+	</nav>
 {/if}
 
 <style>
-    nav {
-        width: 100%;
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        position: absolute;
-        top: 40px;
-        left: 40px;
-    }
+	nav {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: absolute;
+		top: 40px;
+		left: 0px;
+	}
 
-    /* .divider {
-        width: 6px;
-        height: 6px;
-        background: var(--neutral-500);
-        border-radius: 50%;
-    } */
+	nav div {
+		padding: 0px 40px;
+	}
+
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		color: var(--neutral-500);
+		transition: color 0.2s;
+	}
+
+	a:hover {
+		color: var(--neutral-200);
+	}
+
+	a:active {
+		color: white;
+	}
 </style>
