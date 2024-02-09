@@ -4,7 +4,11 @@
 	export let project: Project;
 	import type { Project } from "../../data/data";
 	import { primaryColour } from "../../stores/colourStore";
-	import { cardsMoving, videoSrc } from "../../stores/portfolioStore";
+	import {
+		cardsMoving,
+		videoSrc,
+		videosLoading,
+	} from "../../stores/portfolioStore";
 	import Icon from "../Icon/Icon.svelte";
 
 	// Data
@@ -24,6 +28,19 @@
 		}
 	};
 	$: isCurrent, updateVideo();
+
+	let videoReadyState: number;
+	const handleVideoReadyStateChange = (state: number) => {
+		const isLoading = state !== 4;
+		videosLoading.set({
+			...$videosLoading,
+			projectVideos: [
+				...$videosLoading.projectVideos,
+				{ loading: isLoading, projectName: project.title },
+			],
+		});
+	};
+	$: handleVideoReadyStateChange(videoReadyState);
 
 	// Hover
 	let callbackOnceMoved: NodeJS.Timeout | null = null;
@@ -132,6 +149,7 @@
 			autoplay
 			muted
 			style={`opacity:${flipped}`}
+			bind:readyState={videoReadyState}
 		>
 			<source src={project.video} type="video/mp4" />
 			<track kind="captions" />
@@ -412,6 +430,7 @@
 			rgba(0, 0, 0, 0) 90%
 		);
 	}
+
 	/* Scrollbar style */
 	.details-content-container::-webkit-scrollbar {
 		width: 4px;

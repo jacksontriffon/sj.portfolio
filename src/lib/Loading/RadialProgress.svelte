@@ -1,15 +1,26 @@
 <script lang="ts">
+	import { fly } from "svelte/transition";
 	export let percentageLoaded: number;
+	const maxPercentage = 100;
+	const maxFontWeight = 1000;
 </script>
 
 <div class="circle-container">
-	<div class="percentage-container">
-		<p
-			style={`font-weight: ${(1000 * (percentageLoaded / 100)).toString()}`}
-		>
-			{Math.floor(percentageLoaded)}%
-		</p>
-	</div>
+	{#if percentageLoaded < maxPercentage}
+		<div transition:fly={{ delay: 700, y: 20 }}>
+			<p
+				style={`font-weight: ${(maxFontWeight * (percentageLoaded / maxPercentage)).toString()}`}
+			>
+				{Math.floor(percentageLoaded)}%
+			</p>
+		</div>
+	{:else}
+		<div transition:fly={{ delay: 700, y: 20 }}>
+			<svg class="play-icon" viewBox="0 0 1024 1024" fill="currentColor">
+				<path d="M891.161 512l-749.992 450v-900l749.992 450z" /></svg
+			>
+		</div>
+	{/if}
 	<svg id="svg" width="200" height="200">
 		<circle
 			r="90"
@@ -50,7 +61,6 @@
 
 <style>
 	#svg circle {
-		/* stroke-dashoffset: 0; */
 		transition: stroke-dashoffset 1s linear;
 		stroke: var(--project-colour);
 		stroke-width: 2px;
@@ -88,5 +98,10 @@
 		font-size: 40px;
 		font-weight: 50;
 		transition: all 0.3s;
+	}
+
+	.play-icon {
+		width: 25%;
+		color: var(--project-colour);
 	}
 </style>

@@ -8,6 +8,7 @@
 		portfolioIsLoading,
 		videosLoading,
 		type VideosLoading,
+		portfolioEntered,
 	} from "../../stores/portfolioStore";
 	import { onDestroy, onMount } from "svelte";
 	import RadialProgress from "./RadialProgress.svelte";
@@ -15,7 +16,13 @@
 	// Update Global Loading State
 	let loading = true;
 	const handleLoadingChange = (newVideosLoading: VideosLoading) => {
-		if (newVideosLoading) {
+		if (newVideosLoading.bgVideo) return;
+		const videosFinishedLoading = !!!newVideosLoading.projectVideos.find(
+			(project) => project.loading === true,
+		);
+		if (!videosFinishedLoading) {
+			percentageLoaded = 100;
+			portfolioIsLoading.set(false);
 		}
 	};
 	$: handleLoadingChange($videosLoading);
@@ -33,10 +40,17 @@
 	};
 
 	// Button Events
-	const handleHover = (isHovering: boolean) => {};
-	const handleClick = () => {};
+	let hovering: boolean;
+	const handleHover = (isHovering: boolean) => {
+		hovering = isHovering;
+	};
+	const handleClick = () => {
+		if ($portfolioIsLoading) return;
+		portfolioEntered.set(true);
+	};
 
 	// Loading Animations
+	import { fly } from "svelte/transition";
 	let interval: NodeJS.Timeout;
 	let percentageLoaded = 0;
 	const startLoading = () => {
@@ -62,40 +76,51 @@
 	});
 </script>
 
-<div id="loading-container">
-	<div id="loading-card" style={`--project-colour: ${project.colour}`}>
+<div
+	id="loading-container"
+	style={`${$portfolioEntered ? "pointer-events: none" : ""}`}
+>
+	<div
+		id="loading-card"
+		style={`--project-colour: ${project.colour}; opacity: ${$portfolioEntered ? 0 : 1}`}
+	>
+		<div
+			class="fill"
+			style={`background-color: ${$portfolioEntered ? project.colour : ""};`}
+		></div>
 		<div class="video-side">
 			<button
 				class="video-side-button"
 				on:mouseenter={() => handleHover(true)}
 				on:mouseleave={() => handleHover(false)}
 				on:click={() => handleClick()}
-				disabled={loading}
+				disabled={$portfolioIsLoading}
 			>
 				View more
 			</button>
-			<video
-				class="card-bg-video"
-				width="100%"
-				height="100%"
-				loop
-				bind:this={video}
-				autoplay
-				muted
-				style={`opacity:${loading ? 0 : 1}`}
-			>
-				<source src={project.video} type="video/mp4" />
-				<track kind="captions" />
-			</video>
 			<div class="card-shine"></div>
 			<div class="bottom-right-shadow"></div>
-			<h3 class="card-title">SJ's Portfolio</h3>
+			{#if portfolioIsLoading}
+				<h3 class="card-title">SJ's Portfolio</h3>
+			{/if}
 			<div id="loading-progress-container">
 				<RadialProgress {percentageLoaded} />
-				<p class="loading-status">
-					{loading ? "Loading..." : "Ready to Enter"}
-				</p>
-				<p class="version">v{version}</p>
+				<div>
+					{#if $portfolioIsLoading}
+						<p transition:fly={{ y: 20 }} class="loading-status">
+							Loading...
+						</p>
+					{:else}
+						<p
+							transition:fly={{ delay: 500, y: 20 }}
+							id="ready-to-enter"
+							class="loading-status"
+						>
+							Ready to Enter
+						</p>
+					{/if}
+					<p class="version">v{version}</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -109,6 +134,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		z-index: 100;
+		transition: opacity 1s;
+		transition-delay: 1s;
+	}
+
+	.fill {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 17px;
+		transition: all 750ms;
+		z-index: 1000;
+		pointer-events: none;
 	}
 
 	#loading-card {
@@ -118,6 +156,8 @@
 		height: 70vh;
 		border-radius: 17px;
 		transition: opacity 0.3s;
+		transition-delay: 750ms;
+		backdrop-filter: blur(20px);
 	}
 	.video-side-button {
 		position: absolute;
@@ -158,13 +198,6 @@
 		gap: 8px;
 		box-shadow: 8px 8px 30px -4px black;
 	}
-	.card-bg-video {
-		z-index: 2;
-		position: absolute;
-		left: 0;
-		border-radius: 20px;
-		object-fit: cover;
-	}
 
 	.card-shine {
 		position: absolute;
@@ -194,7 +227,23 @@
 		text-align: left;
 	}
 
+	#loading-progress-container {
+		position: relative;
+		height: 100%;
+	}
+
+	#loading-progress-container p {
+		position: absolute;
+		width: 100%;
+	}
+
 	.loading-status {
 		color: var(--project-colour);
+	}
+
+	.version {
+		margin-top: 56px;
+		color: var(--project-colour);
+		opacity: 0.5;
 	}
 </style>

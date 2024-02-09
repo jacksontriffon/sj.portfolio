@@ -13,3 +13,4 @@ export const videosLoading: Writable<VideosLoading> = writable({
 	projectVideos: [],
 });
 export const portfolioIsLoading = writable(true);
+export const portfolioEntered = writable(false);

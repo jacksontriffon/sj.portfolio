@@ -38,7 +38,7 @@
 	bind:this={video}
 	autoplay
 	muted
-	style={`opacity: ${portfolioIsLoading ? 0 : 1}`}
+	style={`opacity: ${$portfolioIsLoading ? 0 : 1}`}
 >
 	<source bind:this={source} src={$videoSrc} type="video/mp4" />
 	<track kind="captions" />
