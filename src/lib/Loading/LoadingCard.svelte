@@ -1,14 +1,24 @@
 <script lang="ts">
-	import anime from "animejs";
 	import { version } from "../../../package.json";
 	import type { Project } from "../../data/data";
 	export let project: Project;
 	import { primaryColour } from "../../stores/colourStore";
-	import { videoSrc, portfolioIsLoading } from "../../stores/portfolioStore";
+	import {
+		videoSrc,
+		portfolioIsLoading,
+		videosLoading,
+		type VideosLoading,
+	} from "../../stores/portfolioStore";
 	import { onDestroy, onMount } from "svelte";
+	import RadialProgress from "./RadialProgress.svelte";
 
-	// State
+	// Update Global Loading State
 	let loading = true;
+	const handleLoadingChange = (newVideosLoading: VideosLoading) => {
+		if (newVideosLoading) {
+		}
+	};
+	$: handleLoadingChange($videosLoading);
 	// Video
 	let video: HTMLVideoElement;
 	const updateVideo = () => {
@@ -21,10 +31,7 @@
 			video.pause();
 		}
 	};
-	onMount(() => {
-		updateVideo();
-		startLoading();
-	});
+
 	// Button Events
 	const handleHover = (isHovering: boolean) => {};
 	const handleClick = () => {};
@@ -45,16 +52,14 @@
 			}
 		}, updateIntervalInMilliseconds);
 	};
+
+	onMount(() => {
+		updateVideo();
+		startLoading();
+	});
 	onDestroy(() => {
 		clearInterval(interval);
 	});
-	const circumference = 565.48;
-	let inversedProgressDashOffset = 0;
-	$: percentageLoaded,
-		() => {
-			inversedProgressDashOffset =
-				((100 - percentageLoaded) / 100) * circumference;
-		};
 </script>
 
 <div id="loading-container">
@@ -86,52 +91,7 @@
 			<div class="bottom-right-shadow"></div>
 			<h3 class="card-title">SJ's Portfolio</h3>
 			<div id="loading-progress-container">
-				<div class="circle-container">
-					<div class="percentage-container">
-						<p
-							style={`font-weight: ${(1000 * (percentageLoaded / 100)).toString()}`}
-						>
-							{Math.floor(percentageLoaded)}%
-						</p>
-					</div>
-					<svg id="svg" width="200" height="200">
-						<circle
-							r="90"
-							cx="100"
-							cy="100"
-							fill="transparent"
-							stroke-dasharray="565.48"
-							stroke-dashoffset="0"
-						></circle>
-						<circle
-							r="80"
-							cx="100"
-							cy="100"
-							fill="transparent"
-							stroke-dasharray="565.48"
-							stroke-dashoffset="0"
-						></circle>
-						<circle
-							id="bar"
-							r="85"
-							cx="100"
-							cy="100"
-							stroke-dasharray="565.48"
-							stroke-dashoffset="0"
-							fill="transparent"
-						></circle>
-						<circle
-							id="inversed-progress"
-							r="85"
-							cx="100"
-							cy="100"
-							stroke-dasharray="565.48"
-							stroke-dashoffset={565.48 *
-								(percentageLoaded / 100)}
-							fill="transparent"
-						></circle>
-					</svg>
-				</div>
+				<RadialProgress {percentageLoaded} />
 				<p class="loading-status">
 					{loading ? "Loading..." : "Ready to Enter"}
 				</p>
@@ -236,46 +196,5 @@
 
 	.loading-status {
 		color: var(--project-colour);
-	}
-
-	#svg circle {
-		/* stroke-dashoffset: 0; */
-		transition: stroke-dashoffset 1s linear;
-		stroke: var(--project-colour);
-		stroke-width: 2px;
-		transform-box: fill-box;
-		transform-origin: center;
-		transition: all 1s;
-	}
-	#svg #bar {
-		stroke: var(--project-colour);
-		stroke-width: 10px;
-		transform: rotateY(180deg) rotate(-90deg);
-	}
-
-	#svg #inversed-progress {
-		stroke: #121212;
-		stroke-width: 10px;
-		transform: rotateY(180deg) rotate(-90deg);
-	}
-
-	.circle-container {
-		position: relative;
-	}
-
-	.circle-container div {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.circle-container p {
-		color: var(--project-colour);
-		font-size: 40px;
-		font-weight: 50;
-		transition: all 0.3s;
 	}
 </style>

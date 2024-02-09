@@ -6,6 +6,7 @@
 	import { fly } from "svelte/transition";
 	import { onMount } from "svelte";
 	import Icon from "../Icon/Icon.svelte";
+	import { portfolioIsLoading } from "../../stores/portfolioStore";
 	let isMounted = false;
 	onMount(() => {
 		isMounted = true;
@@ -15,7 +16,7 @@
 	let anchorTagColor = "var(--neutral-200)";
 </script>
 
-{#if isMounted}
+{#if !portfolioIsLoading}
 	<nav class="header">
 		<div transition:fly={{ delay: 300, y: 20 }}>
 			<NavButton highlighted={true} buttonText="SJ's Portfolio" />

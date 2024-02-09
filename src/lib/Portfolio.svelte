@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BgVideo from "./BgVideo.svelte";
 	import Carousel from "./Carousel/Carousel.svelte";
-	import LoadingCard from "./Carousel/LoadingCard.svelte";
+	import LoadingCard from "./Loading/LoadingCard.svelte";
 
 	// Loading State
 	import { data } from "../data/data";

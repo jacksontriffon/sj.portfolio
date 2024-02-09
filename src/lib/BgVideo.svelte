@@ -20,14 +20,14 @@
 
 	// Loading
 	let videoReadyState: number;
-	$: videoReadyState,
-		() => {
-			const bgIsLoading = videoReadyState !== 4;
-			videosLoading.set({
-				...$videosLoading,
-				bgVideo: bgIsLoading,
-			});
-		};
+	const handleVideoReadyStateChange = (state: number) => {
+		const bgIsLoading = state !== 4;
+		videosLoading.set({
+			...$videosLoading,
+			bgVideo: bgIsLoading,
+		});
+	};
+	$: handleVideoReadyStateChange(videoReadyState);
 </script>
 
 <video
