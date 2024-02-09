@@ -165,10 +165,10 @@ export const data: SiteData = {
 			link: "https://rga.com/",
 		},
 		{
-			title: "R/GA",
+			title: "HERO",
 			colour: "#ff0000",
-			tagline: "designing a more human future",
-			video: "blob:https://www.thehero.co/8f4dabfb-1ca5-46f3-9454-e9a983a6e0f3",
+			tagline: "boundless creativity",
+			video: "/Hero.mp4",
 			icon: "Desktop",
 			tag: {
 				text: "Immersive Experiences",
