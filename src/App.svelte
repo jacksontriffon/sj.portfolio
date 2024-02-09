@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Nav from './lib/Nav/Nav.svelte';
-	import Portfolio from './lib/Portfolio.svelte';
+	import Nav from "./lib/Nav/Nav.svelte";
+	import Portfolio from "./lib/Portfolio.svelte";
 </script>
 
 <main>
 	<Portfolio />
-  	<Nav />
+	<Nav />
 </main>
 
 <style>

@@ -17,7 +17,10 @@
 	$: cardsCanMoveRight = !(currentProjectIndex <= 0);
 
 	// Card Animation
-	import { cardsMoving } from "../../stores/portfolioStore";
+	import {
+		cardsMoving,
+		portfolioIsLoading,
+	} from "../../stores/portfolioStore";
 	import { onDestroy, onMount } from "svelte";
 	import { initAnimation, moveCardsAnimation } from "./carouselAnimations";
 	let cardsAnimationState: number[] = projects.map((_val, i) => {
@@ -84,7 +87,9 @@
 
 <div
 	class="carousel"
-	style="--project-color: {$primaryColour}"
+	style="--project-color: {$primaryColour}; opacity: {$portfolioIsLoading
+		? 0
+		: 1}"
 	use:swipe={{ timeframe: 300, minSwipeDistance: 60 }}
 	on:swipe={swipeHandler}
 >
@@ -117,6 +122,7 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+		transition: opacity 1s;
 	}
 
 	p {
