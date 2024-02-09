@@ -7,6 +7,9 @@
 	import { cardsMoving, videoSrc } from "../../stores/portfolioStore";
 	import Icon from "../Icon/Icon.svelte";
 
+	// Data
+	const projectTitleId = project.title.replaceAll("/", "-"); // To make the project.title usable in classes and ids
+
 	// Video
 	let video: HTMLVideoElement;
 	const updateVideo = () => {
@@ -66,7 +69,7 @@
 	const flipCard = () => {
 		flipping = true;
 		anime({
-			targets: "#" + project.title + "video-side",
+			targets: "#" + projectTitleId + "video-side",
 			rotateY: flipped ? 0 : 180,
 			opacity: flipped ? 1 : 0,
 			duration: 2000,
@@ -74,7 +77,7 @@
 
 		anime
 			.timeline({
-				targets: "#" + project.title + "details",
+				targets: "#" + projectTitleId + "details",
 			})
 			.add({
 				rotateY: 180,
@@ -107,10 +110,10 @@
 </script>
 
 <article
-	class={`${project.title} ${$$restProps.class}`}
+	class={`${projectTitleId} ${$$restProps.class}`}
 	style={`${!isCurrent ? "opacity: 0.3;" : ""} --project-colour: ${project.colour}`}
 >
-	<div class="video-side" id={project.title + "video-side"}>
+	<div class="video-side" id={projectTitleId + "video-side"}>
 		<button
 			class="video-side-button"
 			on:mouseenter={() => handleHover(true)}
@@ -143,7 +146,7 @@
 	<!-- Card Details -->
 	<section
 		class={`details-container`}
-		id={project.title + "details"}
+		id={projectTitleId + "details"}
 		style={!flipped ? "display: none" : ""}
 	>
 		<div class="card-shine"></div>
