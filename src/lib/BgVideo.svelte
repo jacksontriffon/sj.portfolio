@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { primaryColour } from "../stores/colourStore";
 	import {
 		videoSrc,
 		videosLoading,
@@ -29,21 +30,35 @@
 		});
 	};
 	$: handleVideoReadyStateChange(videoReadyState);
+
+	// Overlay
+	let overlayColour = "none";
+	const handlePortfolioEntered = (entered: boolean) => {
+		if (!entered) return;
+		overlayColour = $primaryColour;
+		setTimeout(() => {
+			overlayColour = "none";
+		}, 500);
+	};
+	$: handlePortfolioEntered($portfolioEntered);
 </script>
 
-<video
-	bind:readyState={videoReadyState}
-	width="100%"
-	height="100%"
-	loop
-	bind:this={video}
-	autoplay
-	muted
-	style={`opacity: ${$portfolioIsLoading ? 0 : $portfolioEntered ? 1 : 0.3}`}
->
-	<source bind:this={source} src={$videoSrc} type="video/mp4" />
-	<track kind="captions" />
-</video>
+<div>
+	<video
+		bind:readyState={videoReadyState}
+		width="100%"
+		height="100%"
+		loop
+		bind:this={video}
+		autoplay
+		muted
+		style={`opacity: ${$portfolioIsLoading ? 0 : $portfolioEntered ? 1 : 0.3}`}
+	>
+		<source bind:this={source} src={$videoSrc} type="video/mp4" />
+		<track kind="captions" />
+	</video>
+	<div class="overlay" style={`background-color: ${overlayColour};`}></div>
+</div>
 
 <style>
 	video {
@@ -54,5 +69,13 @@
 		object-fit: cover;
 		filter: blur(8px);
 		transition: opacity 1s;
+	}
+
+	.overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		transition: background-color 1s;
+		opacity: 0.2;
 	}
 </style>
