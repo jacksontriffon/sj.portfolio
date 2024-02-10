@@ -19,6 +19,7 @@
 	// Card Animation
 	import {
 		cardsMoving,
+		portfolioEntered,
 		portfolioIsLoading,
 	} from "../../stores/portfolioStore";
 	import { onDestroy, onMount } from "svelte";
@@ -29,6 +30,7 @@
 		return i * distance;
 	});
 	const moveCards = (direction: "right" | "left") => {
+		if (!$portfolioEntered) return;
 		// Update state
 		if (direction === "left") currentProjectIndex++;
 		else currentProjectIndex--;
@@ -66,6 +68,8 @@
 		window.removeEventListener("keydown", keydownHandler);
 	});
 
+	$: $portfolioEntered, initAnimation();
+
 	// Swipe Gestures
 	import { swipe } from "svelte-gestures";
 	const swipeHandler = (event: CustomEvent) => {
@@ -96,17 +100,28 @@
 	{#each projects as project, i}
 		<Card {project} class="card" isCurrent={i === currentProjectIndex} />
 	{/each}
-	<p style={`color: ${$primaryColour}`}>
+	<p
+		style={`color: ${$primaryColour}; display: ${$portfolioEntered ? "block" : "none"}`}
+	>
 		{currentProjectIndex + 1} / {projects.length}
 	</p>
-	<div class="arrow-container">
+	<div
+		class="arrow-container"
+		style={`opacity: ${$portfolioEntered ? "1" : "0"};`}
+	>
 		<!-- Cards move in the opposite direction to the arrow -->
 		<!-- e.g. Left arrow, moves cards right  -->
-		<button hidden={!cardsCanMoveRight} on:click={() => moveCards("right")}>
+		<button
+			hidden={!cardsCanMoveRight || !$portfolioEntered}
+			on:click={() => moveCards("right")}
+		>
 			{"<"}
 		</button>
 		<div></div>
-		<button hidden={!cardsCanMoveLeft} on:click={() => moveCards("left")}>
+		<button
+			hidden={!cardsCanMoveLeft || !$portfolioEntered}
+			on:click={() => moveCards("left")}
+		>
 			{">"}
 		</button>
 	</div>

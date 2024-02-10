@@ -5,13 +5,13 @@
 	// Transition
 	import { fly } from "svelte/transition";
 	import Icon from "../Icon/Icon.svelte";
-	import { portfolioIsLoading } from "../../stores/portfolioStore";
+	import { portfolioEntered } from "../../stores/portfolioStore";
 
 	// Button Hover
 	let anchorTagColor = "var(--neutral-200)";
 </script>
 
-{#if !$portfolioIsLoading}
+{#if $portfolioEntered}
 	<nav class="header">
 		<div transition:fly={{ delay: 300, y: 20 }}>
 			<NavButton highlighted={true} buttonText="SJ's Portfolio" />

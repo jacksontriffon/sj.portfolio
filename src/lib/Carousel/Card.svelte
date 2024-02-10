@@ -8,6 +8,7 @@
 		cardsMoving,
 		videoSrc,
 		videosLoading,
+		portfolioEntered,
 	} from "../../stores/portfolioStore";
 	import Icon from "../Icon/Icon.svelte";
 
@@ -128,7 +129,11 @@
 
 <article
 	class={`${projectTitleId} ${$$restProps.class}`}
-	style={`${!isCurrent ? "opacity: 0.3;" : ""} --project-colour: ${project.colour}`}
+	style={`
+		${!isCurrent ? "opacity: 0.3;" : ""} 
+		--project-colour: ${project.colour}; 
+		opacity: ${$portfolioEntered ? "1" : "0"};
+	`}
 >
 	<div class="video-side" id={projectTitleId + "video-side"}>
 		<button

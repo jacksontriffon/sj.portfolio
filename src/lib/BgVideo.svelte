@@ -3,6 +3,7 @@
 		videoSrc,
 		videosLoading,
 		portfolioIsLoading,
+		portfolioEntered,
 	} from "../stores/portfolioStore";
 	let video: HTMLVideoElement;
 	let source: HTMLSourceElement;
@@ -38,7 +39,7 @@
 	bind:this={video}
 	autoplay
 	muted
-	style={`opacity: ${$portfolioIsLoading ? 0 : 1}`}
+	style={`opacity: ${$portfolioIsLoading ? 0 : $portfolioEntered ? 1 : 0.3}`}
 >
 	<source bind:this={source} src={$videoSrc} type="video/mp4" />
 	<track kind="captions" />
