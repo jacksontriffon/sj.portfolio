@@ -153,7 +153,6 @@
 			bind:this={video}
 			autoplay
 			muted
-			style={`opacity:${flipped}`}
 			bind:readyState={videoReadyState}
 		>
 			<source src={project.video} type="video/mp4" />
