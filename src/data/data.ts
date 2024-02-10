@@ -32,6 +32,56 @@ export type VideoDetails = {
 export const data: SiteData = {
 	projects: [
 		{
+			title: "R/GA",
+			colour: "#ff0000",
+			tagline: "designing a more human future",
+			video: "https://res.cloudinary.com/rga/video/upload/f_auto/q_auto/v1636982937/rga.com/RGA-WebHero-05_1_qs6x7a.mp4",
+			icon: "Desktop",
+			tag: {
+				text: "Immersive Experiences",
+				icons: [],
+			},
+			description:
+				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+			highlights: [
+				{
+					text: "Next.js, Typescript, Storybook",
+					icons: ["Nextjs"],
+				},
+				{ text: "Three.js, React", icons: ["Arrow"] },
+				{
+					text: "All Devices",
+					icons: ["Phone", "Desktop"],
+				},
+			],
+			link: "https://rga.com/",
+		},
+		{
+			title: "HERO",
+			colour: "#ff5900",
+			tagline: "boundless creativity",
+			video: "/videos/Hero.mp4",
+			icon: "Desktop",
+			tag: {
+				text: "Immersive Experiences",
+				icons: [],
+			},
+			description:
+				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+			highlights: [
+				{
+					text: "Next.js, Typescript, Storybook",
+					icons: ["Nextjs"],
+				},
+				{ text: "Three.js, React", icons: ["Arrow"] },
+				{
+					text: "All Devices",
+					icons: ["Phone", "Desktop"],
+				},
+			],
+			link: "https://www.thehero.co/",
+		},
+		{
 			title: "Sintax",
 			colour: "#5CFF46",
 			tagline: "an AI hacking sim",
@@ -138,56 +188,6 @@ export const data: SiteData = {
 				},
 			],
 			link: "https://thrivebyfive.com/",
-		},
-		{
-			title: "R/GA",
-			colour: "#ff0000",
-			tagline: "designing a more human future",
-			video: "https://res.cloudinary.com/rga/video/upload/f_auto/q_auto/v1636982937/rga.com/RGA-WebHero-05_1_qs6x7a.mp4",
-			icon: "Desktop",
-			tag: {
-				text: "Immersive Experiences",
-				icons: [],
-			},
-			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
-			highlights: [
-				{
-					text: "Next.js, Typescript, Storybook",
-					icons: ["Nextjs"],
-				},
-				{ text: "Three.js, React", icons: ["Arrow"] },
-				{
-					text: "All Devices",
-					icons: ["Phone", "Desktop"],
-				},
-			],
-			link: "https://rga.com/",
-		},
-		{
-			title: "HERO",
-			colour: "#ff0000",
-			tagline: "boundless creativity",
-			video: "/Hero.mp4",
-			icon: "Desktop",
-			tag: {
-				text: "Immersive Experiences",
-				icons: [],
-			},
-			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
-			highlights: [
-				{
-					text: "Next.js, Typescript, Storybook",
-					icons: ["Nextjs"],
-				},
-				{ text: "Three.js, React", icons: ["Arrow"] },
-				{
-					text: "All Devices",
-					icons: ["Phone", "Desktop"],
-				},
-			],
-			link: "https://rga.com/",
 		},
 	],
 };
