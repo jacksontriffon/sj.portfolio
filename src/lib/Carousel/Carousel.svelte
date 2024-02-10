@@ -30,7 +30,7 @@
 		return i * distance;
 	});
 	const moveCards = (direction: "right" | "left") => {
-		if (!$portfolioEntered) return;
+		if (!$portfolioEntered || !$cardsMoving) return;
 		// Update state
 		if (direction === "left") currentProjectIndex++;
 		else currentProjectIndex--;

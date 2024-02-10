@@ -36,7 +36,7 @@ export const data: SiteData = {
 			colour: "#ff0000",
 			tagline: "designing a more human future",
 			video: "https://res.cloudinary.com/rga/video/upload/f_auto/q_auto/v1636982937/rga.com/RGA-WebHero-05_1_qs6x7a.mp4",
-			icon: "Desktop",
+			icon: "Square",
 			tag: {
 				text: "Immersive Experiences",
 				icons: [],
@@ -61,7 +61,7 @@ export const data: SiteData = {
 			colour: "#ff5900",
 			tagline: "boundless creativity",
 			video: "/videos/Hero.mp4",
-			icon: "Desktop",
+			icon: "HeroLightning",
 			tag: {
 				text: "Immersive Experiences",
 				icons: [],

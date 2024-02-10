@@ -13,6 +13,8 @@ export type IconName =
 	| "Download"
 	| "Nextjs"
 	| "TailwindCSS"
-	| "Vercel";
+	| "Vercel"
+	| "Square"
+	| "HeroLightning";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/
