@@ -147,6 +147,7 @@
 		</button>
 		<video
 			class="card-bg-video"
+			playsinline
 			width="100%"
 			height="100%"
 			loop
@@ -180,6 +181,7 @@
 		<div class="video-container">
 			<video
 				class="mini-video"
+				playsinline
 				width="auto"
 				height="100%"
 				loop
