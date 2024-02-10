@@ -147,8 +147,9 @@
 		width: 100%;
 		height: 100%;
 		border-radius: 17px;
-		transition: all 750ms;
+		transition: all 500ms;
 		z-index: 1000;
+		/* opacity: 0.5; */
 		pointer-events: none;
 	}
 
@@ -159,7 +160,7 @@
 		height: 70vh;
 		border-radius: 17px;
 		transition: opacity 0.3s;
-		transition-delay: 750ms;
+		transition-delay: 500ms;
 		backdrop-filter: blur(20px);
 	}
 	.video-side-button {

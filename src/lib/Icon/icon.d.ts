@@ -15,6 +15,13 @@ export type IconName =
 	| "TailwindCSS"
 	| "Vercel"
 	| "Square"
-	| "HeroLightning";
+	| "HeroLightning"
+	| "Storybook"
+	| "TypeScript"
+	| "Threejs"
+	| "NodeJS"
+	| "React"
+	| "LinkedIn"
+	| "GitHub";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/

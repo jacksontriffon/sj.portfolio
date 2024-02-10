@@ -13,7 +13,9 @@
 	import Icon from "../Icon/Icon.svelte";
 
 	// Data
-	const projectTitleId = project.title.replaceAll("/", "-"); // To make the project.title usable in classes and ids
+	const projectTitleId = project.title
+		.replaceAll("/", "-")
+		.replaceAll(".", "-"); // To make the project.title usable in classes and ids
 
 	// Video
 	let video: HTMLVideoElement;
@@ -204,13 +206,14 @@
 			<div class="description-container">
 				<p contenteditable="false">
 					<!-- Generate <br> tags -->
-					{#if readMore}
+					{#if $portfolioEntered}
 						{#each descriptionVisible.split("<br>") as textBeforeLineBreak}
 							<span>{textBeforeLineBreak}<br /></span>
 						{/each}
-					{:else}
-						{descriptionVisible}
 					{/if}
+					<!-- {#if !readMore}{:else}
+						{descriptionVisible}
+					{/if} -->
 					<button
 						style={readMore ? "display: block; margin: 0;" : ""}
 						on:click={() => (readMore = !readMore)}

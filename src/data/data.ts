@@ -42,13 +42,13 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+				"A Digital Creative Agency designing  brands like Toyota, Nike and Google for a more human future -  <br><br> I specialised in integrating immersive experiences using Three.js and WebGL into greenfield projects. <br><br> Part of my responsibility was also the creation and maintenance of the component-library, this often involved things such as: <br><br>Collaborating with designers to keep our design system consistent. <br>Using Storybook to create and document isolated components. <br><br>Having a keen eye for accessibility. Creating bash scripts to automate tasks for my team. Onboarding new developers by teaching the in's and out's of our repository. etc...",
 			highlights: [
 				{
 					text: "Next.js, Typescript, Storybook",
-					icons: ["Nextjs"],
+					icons: ["Nextjs", "TypeScript", "Storybook"],
 				},
-				{ text: "Three.js, React", icons: ["Arrow"] },
+				{ text: "Three.js, React", icons: ["Threejs", "React"] },
 				{
 					text: "All Devices",
 					icons: ["Phone", "Desktop"],
@@ -80,6 +80,57 @@ export const data: SiteData = {
 				},
 			],
 			link: "https://www.thehero.co/",
+		},
+		{
+			title: "Wizit",
+			colour: "#e61996",
+			tagline: "easy credit for millennials",
+			video: "/videos/Wizit.mp4",
+			icon: "Phone",
+			tag: {
+				text: "Mobile App",
+				icons: [],
+			},
+			description:
+				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+			highlights: [
+				{
+					text: "Angular",
+					icons: ["Angular"],
+					// link: "https://godotengine.org/",
+				},
+				{ text: "Ionic & Capacitor", icons: ["Ionic", "Capacitor"] },
+				{
+					text: "Mobile Only",
+					icons: ["Phone"],
+				},
+			],
+			link: "https://wizit.money/",
+		},
+		{
+			title: "ThriveByFive",
+			colour: "#a7d3be",
+			tagline: "",
+			video: "/videos/ThriveByFive.mp4",
+			icon: "Phone",
+			tag: {
+				text: "Website",
+				icons: [],
+			},
+			description:
+				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+			highlights: [
+				{
+					text: "Next.js & Vercel",
+					icons: ["Nextjs", "Vercel"],
+				},
+				{ text: "Tailwind", icons: ["TailwindCSS"] },
+				{
+					text: "All Devices",
+					icons: ["Phone", "Desktop"],
+				},
+			],
+			link: "https://thrivebyfive.com/",
 		},
 		{
 			title: "Sintax",
@@ -139,55 +190,31 @@ export const data: SiteData = {
 			link: "https://vyfrost.itch.io/spitfire",
 		},
 		{
-			title: "Wizit",
-			colour: "#e61996",
-			tagline: "easy credit for millennials",
-			video: "/videos/Wizit.mp4",
-			icon: "Phone",
+			title: "Vyfrost.com",
+			colour: "#95E8F8",
+			tagline: "the game studio's portfolio",
+			video: "/videos/vyfrost.com.mp4",
+			icon: "GameController",
 			tag: {
-				text: "Mobile App",
+				text: "Portfolio",
 				icons: [],
 			},
 			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+				"Explore a virtual realm filled with NPC hackers.\n\n\
+				Gain the skills required to enter hacking competitions like CTF’s.",
 			highlights: [
 				{
-					text: "Angular",
-					icons: ["Angular"],
-					// link: "https://godotengine.org/",
+					text: "Godot Engine",
+					icons: ["Godot"],
+					link: "https://godotengine.org/",
 				},
-				{ text: "Ionic & Capacitor", icons: ["Ionic", "Capacitor"] },
+				{ text: "Puzzle Game", icons: ["Puzzle"] },
 				{
-					text: "Mobile Only",
-					icons: ["Phone"],
+					text: "For Desktop and Mobile",
+					icons: ["Desktop", "Phone"],
 				},
 			],
-			link: "https://wizit.money/",
-		},
-		{
-			title: "ThriveByFive",
-			colour: "#a7d3be",
-			tagline: "",
-			video: "/videos/ThriveByFive.mp4",
-			icon: "Phone",
-			tag: {
-				text: "Website",
-				icons: [],
-			},
-			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
-			highlights: [
-				{
-					text: "Next.js & Vercel",
-					icons: ["Nextjs", "Vercel"],
-				},
-				{ text: "Tailwind", icons: ["TailwindCSS"] },
-				{
-					text: "All Devices",
-					icons: ["Phone", "Desktop"],
-				},
-			],
-			link: "https://thrivebyfive.com/",
+			link: "https://vyfrost.com",
 		},
 	],
 };
