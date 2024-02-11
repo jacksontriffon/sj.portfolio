@@ -107,7 +107,7 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"Australian Fintech app providing options for extra credit: Wizitpay (Buy-Now-Pay-Later), Wizitcard and Powerup (extra credit with 0% interest)<br><br>This app targets a younger audience and therefore pushes towards gamification. As the lead front-end engineer, I collaborating heavily with designers to create smooth animations and transitions between every section of the app. <br><br>Built using Ionic and Angular, I crafted visually dynamic UI and a component library that matches the tone of the brand, that could also be used on other platforms like their website.",
+				"Australian Fintech app providing options for extra credit: Wizitpay (Buy-Now-Pay-Later), Wizitcard and Powerup (extra credit with 0% interest)<br><br>This app targets a younger audience and therefore pushes towards gamification. As the lead front-end engineer I collaborated heavily with designers to create smooth animations and transitions between every section of the app. <br><br>Built using Ionic and Angular, I crafted visually dynamic UI and a component library that matches the tone of the brand, that could also be used on other platforms like their website.",
 			highlights: [
 				{
 					text: "Angular",
