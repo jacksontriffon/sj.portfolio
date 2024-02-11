@@ -569,4 +569,10 @@
 			display: none;
 		}
 	}
+
+	@media only screen and (max-width: 500px) {
+		.project-details-footer {
+			margin-bottom: 64px;
+		}
+	}
 </style>
