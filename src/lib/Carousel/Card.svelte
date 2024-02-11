@@ -127,6 +127,7 @@
 	};
 	let descriptionVisible = getDescription(readMore, project);
 	$: descriptionVisible = getDescription(readMore, project);
+	let secondaryLinkColour = project.colour;
 </script>
 
 <article
@@ -267,6 +268,31 @@
 						<Icon name="Arrow" color="black" size="s" />
 					</div>
 				</a>
+				{#if project.secondaryLink}
+					<a
+						href={project.secondaryLink.link}
+						class="secondary-link"
+						on:mouseenter={() => {
+							secondaryLinkColour = "white";
+						}}
+						on:mouseleave={() => {
+							secondaryLinkColour = project.colour;
+						}}
+						on:click={() => {
+							secondaryLinkColour = project.colour;
+							setTimeout(() => {
+								secondaryLinkColour = "white";
+							}, 150);
+						}}
+					>
+						<Icon
+							size="lg"
+							color={secondaryLinkColour}
+							transitionColourInMs={300}
+							name={project.secondaryLink.icon}
+						/>
+					</a>
+				{/if}
 			</div>
 		</div>
 	</section>
@@ -489,6 +515,7 @@
 		row-gap: 4px;
 		column-gap: 12px;
 		flex-wrap: wrap;
+		max-width: 60px;
 	}
 
 	.highlight-link {
@@ -507,11 +534,13 @@
 
 	.project-details-footer {
 		display: flex;
+		align-items: end;
 		justify-content: center;
 		width: 100%;
 		margin-top: auto;
 		margin-top: 16px;
 		margin-bottom: 32px;
+		gap: 16px;
 	}
 
 	.primary {
@@ -525,6 +554,13 @@
 		padding: 8px 24px;
 		border-radius: 12px;
 		justify-content: center;
+	}
+
+	.secondary-link {
+		height: 40px;
+		padding: 0;
+		margin: 0;
+		align-items: end;
 	}
 
 	@media only screen and (max-width: 350px) {

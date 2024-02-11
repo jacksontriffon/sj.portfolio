@@ -22,6 +22,14 @@ export type IconName =
 	| "NodeJS"
 	| "React"
 	| "LinkedIn"
-	| "GitHub";
+	| "GitHub"
+	| "tRPC"
+	| "Prisma"
+	| "Cursor"
+	| "Bootstrap"
+	| "HTML"
+	| "CSS"
+	| "JavaScript"
+	| "Sass";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/

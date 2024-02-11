@@ -11,7 +11,10 @@ export type Project = {
 	link?: string;
 	tag: Tag;
 	highlights: Tag[];
-	githubLink?: string;
+	secondaryLink?: {
+		icon: IconName;
+		link: string;
+	};
 	video?: string;
 	icon: IconName;
 };
@@ -42,7 +45,7 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"A Digital Creative Agency designing  brands like Toyota, Nike and Google for a more human future -  <br><br> I specialised in integrating immersive experiences using Three.js and WebGL into greenfield projects. <br><br> Part of my responsibility was also the creation and maintenance of the component-library, this often involved things such as: <br><br>Collaborating with designers to keep our design system consistent. <br>Using Storybook to create and document isolated components. <br><br>Having a keen eye for accessibility. Creating bash scripts to automate tasks for my team. Onboarding new developers by teaching the in's and out's of our repository. etc...",
+				"Global Creative Innovation Studio that exists to help businesses (Toyota, Nike, Google...) create a more human future. <br><br> I specialised in integrating immersive experiences using Three.js and WebGL into greenfield Nextjs & React projects.",
 			highlights: [
 				{
 					text: "Next.js, Typescript, Storybook",
@@ -55,6 +58,10 @@ export const data: SiteData = {
 				},
 			],
 			link: "https://rga.com/",
+			secondaryLink: {
+				icon: "LinkedIn",
+				link: "https://www.linkedin.com/company/r-ga-australia/",
+			},
 		},
 		{
 			title: "HERO",
@@ -63,23 +70,30 @@ export const data: SiteData = {
 			video: "/videos/Hero.mp4",
 			icon: "HeroLightning",
 			tag: {
-				text: "Immersive Experiences",
+				text: "Mobile & Web Apps",
 				icons: [],
 			},
 			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+				"Australia's #1 Independent Digital Agency at the 2022 APAC Effies awarded on work with clients like Coca Cola, Bakers Delight, eBay, Maybeline, and more. <br><br> I lead the front-end of multiple projects using a variety of frameworks and meta-frameworks to create SSR Websites and Mobile apps for both Apple and Android.",
 			highlights: [
 				{
-					text: "Next.js, Typescript, Storybook",
-					icons: ["Nextjs"],
+					text: "React, Next.js, ",
+					icons: ["React", "Nextjs"],
 				},
-				{ text: "Three.js, React", icons: ["Arrow"] },
+				{
+					text: "Angular, Ionic, Capacitor",
+					icons: ["Angular", "Ionic", "Capacitor"],
+				},
 				{
 					text: "All Devices",
 					icons: ["Phone", "Desktop"],
 				},
 			],
 			link: "https://www.thehero.co/",
+			secondaryLink: {
+				icon: "LinkedIn",
+				link: "https://www.linkedin.com/company/hero-co/?originalSubdomain=au",
+			},
 		},
 		{
 			title: "Wizit",
@@ -92,12 +106,11 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
+				"Australian Fintech app providing options for extra credit: Wizitpay (Buy-Now-Pay-Later), Wizitcard and Powerup (extra credit with 0% interest)<br><br>This app targets a younger audience and therefore pushes towards gamification. As the lead front-end engineer, I collaborating heavily with designers to create smooth animations and transitions between every section of the app. <br><br>Built using Ionic and Angular, I crafted visually dynamic UI and a component library that matches the tone of the brand, that could also be used on other platforms like their website.",
 			highlights: [
 				{
 					text: "Angular",
 					icons: ["Angular"],
-					// link: "https://godotengine.org/",
 				},
 				{ text: "Ionic & Capacitor", icons: ["Ionic", "Capacitor"] },
 				{
@@ -111,14 +124,13 @@ export const data: SiteData = {
 			title: "ThriveByFive",
 			colour: "#a7d3be",
 			tagline: "",
+			description: "",
 			video: "/videos/ThriveByFive.mp4",
 			icon: "Phone",
 			tag: {
 				text: "Website",
 				icons: [],
 			},
-			description:
-				"As the lead front-end developer for a gamified Buy-Now-Pay-Later Fintech app catering to young Australians, I utilized Ionic and Angular to craft a visually dynamic and user-friendly interface. <br> My focus on engaging animations not only enhanced the overall user experience but also brought a playful and interactive element to the application. \n\nThis project underscores my expertise in front-end development, demonstrating my ability to seamlessly integrate technologies while aligning with the preferences of the target audience.",
 			highlights: [
 				{
 					text: "Next.js & Vercel",
@@ -136,6 +148,8 @@ export const data: SiteData = {
 			title: "Sintax",
 			colour: "#5CFF46",
 			tagline: "an AI hacking sim",
+			description:
+				"Explore a virtual realm filled with NPC hackers and gain the skills required to enter hacking competitions like CTFs (Capture the flag).<br><br>Seeing all these LLM's (like chatGPT) I've been keen to create a fun yet somewhat educational type game like this for awhile. <br><br>Turns out AI's are great at using the command line, so I flipped the role and made it evaluate players performance and give them hints based on the errors they produce.<br><br>Only a basic prototype so far, currently there's some gameplay and the core mechanic functioning, but remember there's no win or end to the game.",
 			video: "/videos/Sintax.mp4",
 			icon: "GameController",
 			tag: {
@@ -153,13 +167,10 @@ export const data: SiteData = {
 					icons: ["OpenAI", "Terminal"],
 				},
 				{
-					text: "Desktop Only",
-					icons: ["Desktop"],
+					text: "Desktop and Mobile",
+					icons: ["Desktop", "Phone"],
 				},
 			],
-			description:
-				"Explore a virtual realm filled with NPC hackers.\n\n\
-				Gain the skills required to enter hacking competitions like CTF’s.",
 			link: "https://sintax.vyfrost.com",
 		},
 		{
@@ -173,18 +184,20 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"Explore a virtual realm filled with NPC hackers.\n\n\
-				Gain the skills required to enter hacking competitions like CTF’s.",
+				"A chill and cozy journey through the abandoned caverns of an old mine, as a little flame lit by a stray lightningbolt.<br><br>Created for LowRezJam, a gamejam which restricts games down to 64x64 pixels (about the size of a nokia).<br><br> As the lead developer I worked closely with our artist and musician to create a cohesive flow to each mechanic and level.",
 			highlights: [
 				{
 					text: "Godot Engine",
 					icons: ["Godot"],
 					link: "https://godotengine.org/",
 				},
-				{ text: "Puzzle Game", icons: ["Puzzle"] },
 				{
-					text: "For Desktop and Mobile",
-					icons: ["Desktop", "Phone"],
+					text: "64x64 Puzzle Game",
+					icons: ["Puzzle"],
+				},
+				{
+					text: "For all Devices",
+					icons: ["Desktop", "Phone", "GameController"],
 				},
 			],
 			link: "https://vyfrost.itch.io/spitfire",
@@ -196,25 +209,88 @@ export const data: SiteData = {
 			video: "/videos/vyfrost.com.mp4",
 			icon: "GameController",
 			tag: {
-				text: "Portfolio",
+				text: "Game Studio Portfolio",
 				icons: [],
 			},
 			description:
-				"Explore a virtual realm filled with NPC hackers.\n\n\
-				Gain the skills required to enter hacking competitions like CTF’s.",
+				"Vyfrost's indie game portfolio takes you to a 2D universe inspired by Space Invaders, all powered by the Godot engine.<br><br>Since it's a website I decided on touch-to-move controls so that navigation is easy and intuitive. An essential component to new immersive experiences, especially as this is available on all devices.",
 			highlights: [
 				{
 					text: "Godot Engine",
 					icons: ["Godot"],
 					link: "https://godotengine.org/",
 				},
-				{ text: "Puzzle Game", icons: ["Puzzle"] },
+				{ text: "Point & Click", icons: ["Cursor", "GameController"] },
 				{
 					text: "For Desktop and Mobile",
 					icons: ["Desktop", "Phone"],
 				},
 			],
 			link: "https://vyfrost.com",
+		},
+		{
+			title: "Memopup",
+			colour: "#fff",
+			tagline: "an AI that saves your prompts",
+			video: "/videos/Memopup.mp4",
+			icon: "Phone",
+			tag: {
+				text: "AI Chatbot",
+				icons: [],
+			},
+			description:
+				"Reusing prompts saves loads of time spent on rewriting. I built Memopup to allow me to text my Japanese friends quicker. <br><br> Built with OpenAI and the T3 Stack (Nextjs, tRPC, Prisma, Tailwind)",
+			highlights: [
+				{
+					text: "Nextjs, tRPC, Prisma",
+					icons: ["Nextjs", "tRPC", "Prisma"],
+				},
+				{
+					text: "OpenAI, TailwindCSS",
+					icons: ["OpenAI", "TailwindCSS"],
+				},
+				{
+					text: "For Desktop and Mobile",
+					icons: ["Desktop", "Phone"],
+				},
+			],
+			link: "https://memopup.com",
+			secondaryLink: {
+				icon: "GitHub",
+				link: "https://github.com/jacksontriffon/Memopup",
+			},
+		},
+		{
+			title: "SJCoded",
+			colour: "#3369e7",
+			tagline: "my old portfolio",
+			video: "/videos/SJCoded.mp4",
+			icon: "Desktop",
+			tag: {
+				text: "Portfolio Website",
+				icons: [],
+			},
+			description:
+				"My first portfolio site built quickly with HTML, CSS & JavaScript. Nothing fancy, but it was a nice challenge to build it over a weekend.<br><br>Links and details aren't up to date, so I'd suggest sticking to this portfolio for accurate links.",
+			highlights: [
+				{
+					text: "HTML, JavaScript",
+					icons: ["HTML", "JavaScript"],
+				},
+				{
+					text: "Bootstrap, CSS, SCSS",
+					icons: ["Bootstrap", "CSS", "Sass"],
+				},
+				{
+					text: "For Desktop and Mobile",
+					icons: ["Desktop", "Phone"],
+				},
+			],
+			link: "https://sjcoded.com",
+			secondaryLink: {
+				icon: "GitHub",
+				link: "https://github.com/jacksontriffon/SJcoded.github.io",
+			},
 		},
 	],
 };
