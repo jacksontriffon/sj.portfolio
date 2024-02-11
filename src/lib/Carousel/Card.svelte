@@ -212,9 +212,6 @@
 							<span>{textBeforeLineBreak}<br /></span>
 						{/each}
 					{/if}
-					<!-- {#if !readMore}{:else}
-						{descriptionVisible}
-					{/if} -->
 					<button
 						style={readMore ? "display: block; margin: 0;" : ""}
 						on:click={() => (readMore = !readMore)}
@@ -263,9 +260,14 @@
 					aria-disabled={!flipped || !isCurrent}
 					href={project.link}
 					class="primary"
+					style={`color: ${project.lightMode ? "white" : "black"}`}
 				>
 					Go to site <div class="link-arrow-container">
-						<Icon name="Arrow" color="black" size="s" />
+						<Icon
+							name="Arrow"
+							color={project.lightMode ? "white" : "black"}
+							size="s"
+						/>
 					</div>
 				</a>
 				{#if project.secondaryLink}
@@ -547,7 +549,6 @@
 		z-index: 5;
 		display: flex;
 		gap: 12px;
-		color: black;
 		font-weight: 700;
 		border: none;
 		background-color: var(--project-colour);

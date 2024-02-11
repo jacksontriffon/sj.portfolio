@@ -17,6 +17,7 @@ export type Project = {
 	};
 	video?: string;
 	icon: IconName;
+	lightMode?: boolean;
 };
 export type Tag = {
 	text: string;
@@ -121,58 +122,58 @@ export const data: SiteData = {
 			link: "https://wizit.money/",
 		},
 		{
-			title: "ThriveByFive",
-			colour: "#a7d3be",
-			tagline: "",
-			description: "",
-			video: "/videos/ThriveByFive.mp4",
-			icon: "Phone",
-			tag: {
-				text: "Website",
-				icons: [],
-			},
-			highlights: [
-				{
-					text: "Next.js & Vercel",
-					icons: ["Nextjs", "Vercel"],
-				},
-				{ text: "Tailwind", icons: ["TailwindCSS"] },
-				{
-					text: "All Devices",
-					icons: ["Phone", "Desktop"],
-				},
-			],
-			link: "https://thrivebyfive.com/",
-		},
-		{
-			title: "Sintax",
-			colour: "#5CFF46",
-			tagline: "an AI hacking sim",
-			description:
-				"Explore a virtual realm filled with NPC hackers and gain the skills required to enter hacking competitions like CTFs (Capture the flag).<br><br>Seeing all these LLM's (like chatGPT) I've been keen to create a fun yet somewhat educational type game like this for awhile. <br><br>Turns out AI's are great at using the command line, so I flipped the role and made it evaluate players performance and give them hints based on the errors they produce.<br><br>Only a basic prototype so far, currently there's some gameplay and the core mechanic functioning, but remember there's no win or end to the game.",
-			video: "/videos/Sintax.mp4",
+			title: "Vyfrost.com",
+			colour: "#95E8F8",
+			tagline: "the game studio's portfolio",
+			video: "/videos/vyfrost.com.mp4",
 			icon: "GameController",
 			tag: {
-				text: "Prototype",
+				text: "Game Studio Portfolio",
 				icons: [],
 			},
+			description:
+				"Vyfrost's indie game portfolio takes you to a 2D universe inspired by Space Invaders, all powered by the Godot engine.<br><br>Since it's a website I decided on touch-to-move controls so that navigation is easy and intuitive. An essential component to new immersive experiences, especially as this is available on all devices.",
 			highlights: [
 				{
 					text: "Godot Engine",
 					icons: ["Godot"],
 					link: "https://godotengine.org/",
 				},
+				{ text: "Point & Click", icons: ["Cursor", "GameController"] },
 				{
-					text: "AI Cybersecurity LLMs",
-					icons: ["OpenAI", "Terminal"],
-				},
-				{
-					text: "Desktop and Mobile",
+					text: "For Desktop and Mobile",
 					icons: ["Desktop", "Phone"],
 				},
 			],
-			link: "https://sintax.vyfrost.com",
+			link: "https://vyfrost.com",
 		},
+		{
+			title: "ThriveByFive",
+			colour: "#311c7e",
+			tagline: "multi-lingual education for parents",
+			description:
+				"The first five years will shape a child's life. Minderoo Foundation has taken on a mission to help kids thrive in third-world countries. <br><br>When this app was about to launch it was my responsibility to build the landing page from scratch. In two weeks a fully functioning Next.js SSR web app was deployed and with bonus animations added.<br><br>Initial App launch was successful and now has been rolled out in 30+ countries!",
+			video: "/videos/ThriveByFive.mp4",
+			icon: "Phone",
+			tag: {
+				text: "Educational App",
+				icons: [],
+			},
+			highlights: [
+				{
+					text: "Next.js, React, Tailwind",
+					icons: ["Nextjs", "React", "TailwindCSS"],
+				},
+				{ text: "Vercel, GitHub actions", icons: ["Vercel", "GitHub"] },
+				{
+					text: "For Mobile and Desktop",
+					icons: ["Phone", "Desktop"],
+				},
+			],
+			link: "https://thrivebyfive.com/",
+			lightMode: true,
+		},
+
 		{
 			title: "Spitfire",
 			colour: "#DF4A57",
@@ -203,30 +204,33 @@ export const data: SiteData = {
 			link: "https://vyfrost.itch.io/spitfire",
 		},
 		{
-			title: "Vyfrost.com",
-			colour: "#95E8F8",
-			tagline: "the game studio's portfolio",
-			video: "/videos/vyfrost.com.mp4",
+			title: "Sintax",
+			colour: "#5CFF46",
+			tagline: "an AI hacking sim",
+			description:
+				"Explore a virtual realm filled with NPC hackers and gain the skills required to enter hacking competitions like CTFs (Capture the flag).<br><br>Seeing all these LLM's (like chatGPT) I've been keen to create a fun yet somewhat educational type game like this for awhile. <br><br>Turns out AI's are great at using the command line, so I flipped the role and made it evaluate players performance and give them hints based on the errors they produce.<br><br>Only a basic prototype so far, currently there's some gameplay and the core mechanic functioning, but remember there's no win or end to the game.",
+			video: "/videos/Sintax.mp4",
 			icon: "GameController",
 			tag: {
-				text: "Game Studio Portfolio",
+				text: "Prototype",
 				icons: [],
 			},
-			description:
-				"Vyfrost's indie game portfolio takes you to a 2D universe inspired by Space Invaders, all powered by the Godot engine.<br><br>Since it's a website I decided on touch-to-move controls so that navigation is easy and intuitive. An essential component to new immersive experiences, especially as this is available on all devices.",
 			highlights: [
 				{
 					text: "Godot Engine",
 					icons: ["Godot"],
 					link: "https://godotengine.org/",
 				},
-				{ text: "Point & Click", icons: ["Cursor", "GameController"] },
 				{
-					text: "For Desktop and Mobile",
+					text: "AI Cybersecurity LLMs",
+					icons: ["OpenAI", "Terminal"],
+				},
+				{
+					text: "Desktop and Mobile",
 					icons: ["Desktop", "Phone"],
 				},
 			],
-			link: "https://vyfrost.com",
+			link: "https://sintax.vyfrost.com",
 		},
 		{
 			title: "Memopup",
@@ -291,6 +295,7 @@ export const data: SiteData = {
 				icon: "GitHub",
 				link: "https://github.com/jacksontriffon/SJcoded.github.io",
 			},
+			lightMode: true,
 		},
 	],
 };
