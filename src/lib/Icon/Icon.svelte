@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { AriaType, IconName } from "./icon";
+	import type { AriaType, IconName, IconSize } from "./icon";
 
 	export let name: IconName;
 	export let ariaType: AriaType = "stand-alone";
-	export let size: "xs" | "s" | "m" | "lg";
+	export let size: IconSize;
 	export let color = "white";
 	export let transitionColourInMs = 0;
 

@@ -46,7 +46,7 @@ export const data: SiteData = {
 				icons: [],
 			},
 			description:
-				"Global Creative Innovation Studio that exists to help businesses (Toyota, Nike, Google...) create a more human future. <br><br> I specialised in integrating immersive experiences using Three.js and WebGL into greenfield Nextjs & React projects.",
+				"Global Creative Innovation Studio that helps businesses including Toyota, Nike and Google to create a more human future. <br><br> I specialised in integrating immersive experiences using Three.js and WebGL into greenfield Nextjs & React projects.",
 			highlights: [
 				{
 					text: "Next.js, Typescript, Storybook",

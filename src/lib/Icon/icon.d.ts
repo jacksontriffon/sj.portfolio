@@ -33,3 +33,5 @@ export type IconName =
 	| "Sass";
 
 export type AriaType = "decorative" | "stand-alone" | "hidden"; // https://css-tricks.com/accessible-svg-icons/
+
+export type IconSize = "xs" | "s" | "m" | "lg";

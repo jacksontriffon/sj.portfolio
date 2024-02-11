@@ -6,6 +6,8 @@
 	import { fly } from "svelte/transition";
 	import Icon from "../Icon/Icon.svelte";
 	import { portfolioEntered } from "../../stores/portfolioStore";
+	import { primaryColour } from "../../stores/colourStore";
+	import IconLink from "../IconLink.svelte";
 
 	// Button Hover
 	let anchorTagColor = "var(--neutral-200)";
@@ -13,10 +15,32 @@
 
 {#if $portfolioEntered}
 	<nav class="header">
-		<div transition:fly={{ delay: 300, y: 20 }}>
-			<NavButton highlighted={true} buttonText="SJ's Portfolio" />
+		<div class="left">
+			<div transition:fly={{ delay: 300, y: 20 }}>
+				<NavButton highlighted={true} buttonText="SJ's Portfolio" />
+			</div>
+			<div class="socials">
+				<div transition:fly={{ delay: 400, y: 20 }}>
+					<IconLink
+						href={"https://github.com/jacksontriffon"}
+						defaultIconColor={$primaryColour}
+						size="m"
+						iconName="GitHub"
+						iconHoverColor="white"
+					/>
+				</div>
+				<div transition:fly={{ delay: 500, y: 20 }}>
+					<IconLink
+						href={"https://www.linkedin.com/in/sj-triffon/"}
+						defaultIconColor={$primaryColour}
+						size="m"
+						iconName="LinkedIn"
+						iconHoverColor="white"
+					/>
+				</div>
+			</div>
 		</div>
-		<div transition:fly={{ delay: 600, y: 20 }}>
+		<div class="right" transition:fly={{ delay: 700, y: 20 }}>
 			<a
 				href="/documents/SJ's Resume.pdf"
 				download="SJs-resume.pdf"
@@ -45,8 +69,22 @@
 		left: 0px;
 	}
 
-	nav div {
-		padding: 0px 40px;
+	.header .left {
+		display: flex;
+		padding-left: 40px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.socials {
+		display: flex;
+		gap: 8px;
+	}
+
+	.header .right {
+		display: flex;
+		gap: 8px;
+		padding-right: 40px;
 	}
 
 	a {
@@ -79,8 +117,12 @@
 		nav {
 			top: 16px;
 		}
-		nav div {
-			padding: 0px 8px;
+		.header .left {
+			padding-left: 8px;
+		}
+
+		.header .right {
+			padding-right: 8px;
 		}
 	}
 </style>
