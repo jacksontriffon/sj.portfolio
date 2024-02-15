@@ -150,7 +150,7 @@ export const data: SiteData = {
 		{
 			title: "ThriveByFive",
 			colour: "#311c7e",
-			tagline: "multi-lingual education for parents",
+			tagline: "education for parents in developing countries",
 			description:
 				"The first five years will shape a child's life. Minderoo Foundation has taken on a mission to help kids thrive in third-world countries. <br><br>When this app was about to launch it was my responsibility to build the landing page from scratch. In two weeks a fully functioning Next.js SSR web app was deployed and with bonus animations added.<br><br>Initial App launch was successful and now has been rolled out in 30+ countries!",
 			video: "/videos/ThriveByFive.mp4",

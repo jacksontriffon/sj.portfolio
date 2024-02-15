@@ -11,26 +11,37 @@
 		portfolioEntered,
 	} from "../../stores/portfolioStore";
 	import Icon from "../Icon/Icon.svelte";
+	import { onMount } from "svelte";
 
 	// Data
 	const projectTitleId = project.title
 		.replaceAll("/", "-")
 		.replaceAll(".", "-"); // To make the project.title usable in classes and ids
 
+	// Lifecycle
+	let mounted = false;
+	onMount(() => {
+		mounted = true;
+	});
+
 	// Video
-	let video: HTMLVideoElement;
+	let bigVideo: HTMLVideoElement;
+	let smallVideo: HTMLVideoElement;
 	const updateVideo = () => {
-		if (!video) return;
+		if (!bigVideo) return;
 		if (isCurrent && project.video) {
 			videoSrc.set(project.video);
 			primaryColour.set(project.colour);
-			video.play();
+			bigVideo.play();
+			smallVideo.play();
 		} else {
-			video.pause();
+			bigVideo.pause();
+			smallVideo.pause();
 			if (flipped) flipCard();
 		}
 	};
 	$: isCurrent, updateVideo();
+	$: mounted, updateVideo();
 
 	let videoReadyState: number;
 	const handleVideoReadyStateChange = (state: number) => {
@@ -57,7 +68,7 @@
 		if ($cardsMoving && !callbackOnceMoved) {
 			callbackOnceMoved = setTimeout(() => {
 				var element = document.querySelector(
-					"." + project.title + " button",
+					"." + projectTitleId + " button",
 				);
 				if (!element) return;
 				handleHover(element.matches(":hover"));
@@ -66,18 +77,20 @@
 		}
 		if (!$cardsMoving && !flipping) {
 			anime({
-				targets: "." + project.title,
+				targets: "." + projectTitleId,
 				translateY: isHovering ? -10 : 0,
 				rotate: isHovering ? getRandomRotation() : 0,
 			});
 		}
 	};
 	const updateHover = () => {
-		const element = document.querySelector("." + project.title + " button");
+		const element = document.querySelector(
+			"." + projectTitleId + " button",
+		);
 		if (!element) return;
 		const isHovering = element.matches(":hover");
 		anime({
-			targets: "." + project.title,
+			targets: "." + projectTitleId,
 			translateY: isHovering ? -10 : 0,
 			rotate: isHovering ? getRandomRotation() : 0,
 		});
@@ -133,9 +146,8 @@
 <article
 	class={`${projectTitleId} ${$$restProps.class}`}
 	style={`
-		${!isCurrent ? "opacity: 0.3;" : ""} 
 		--project-colour: ${project.colour}; 
-		opacity: ${$portfolioEntered ? "1" : "0"};
+		opacity: ${isCurrent ? "1" : $portfolioEntered ? "0.3" : "0"};
 	`}
 >
 	<div class="video-side" id={projectTitleId + "video-side"}>
@@ -154,7 +166,7 @@
 			width="100%"
 			height="100%"
 			loop
-			bind:this={video}
+			bind:this={bigVideo}
 			autoplay
 			muted
 			bind:readyState={videoReadyState}
@@ -188,7 +200,7 @@
 				width="auto"
 				height="100%"
 				loop
-				bind:this={video}
+				bind:this={smallVideo}
 				autoplay
 				muted
 			>
