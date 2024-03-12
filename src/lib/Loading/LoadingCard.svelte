@@ -82,12 +82,12 @@
 >
 	<div
 		id="loading-card"
-		style={`--project-colour: ${project.colour}; opacity: ${$portfolioEntered ? 0 : 1};`}
+		style={`--project-colour: #5CFF46; opacity: ${$portfolioEntered ? 0 : 1};`}
 	>
 		<div
 			class="fill"
 			style={`
-				background-color: ${$portfolioEntered ? project.colour : ""}; 
+				background-color: ${$portfolioEntered ? "#5CFF46" : ""}; 
 				scale: ${$portfolioEntered ? 1.1 : 1};
 			`}
 		></div>
