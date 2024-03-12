@@ -15,6 +15,7 @@
 
 	// Update Global Loading State
 	let loading = true;
+	const loadingColour = "#5CFF46";
 	const handleLoadingChange = (newVideosLoading: VideosLoading) => {
 		if (newVideosLoading.bgVideo) return;
 		const videosFinishedLoading = !!!newVideosLoading.projectVideos.find(
@@ -82,12 +83,12 @@
 >
 	<div
 		id="loading-card"
-		style={`--project-colour: #5CFF46; opacity: ${$portfolioEntered ? 0 : 1};`}
+		style={`--project-colour: ${loadingColour}; opacity: ${$portfolioEntered ? 0 : 1};`}
 	>
 		<div
 			class="fill"
 			style={`
-				background-color: ${$portfolioEntered ? "#5CFF46" : ""}; 
+				background-color: ${$portfolioEntered ? loadingColour : ""}; 
 				scale: ${$portfolioEntered ? 1.1 : 1};
 			`}
 		></div>
