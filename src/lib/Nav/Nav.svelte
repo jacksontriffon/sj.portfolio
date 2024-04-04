@@ -11,6 +11,11 @@
 
 	// Button Hover
 	let anchorTagColor = "var(--neutral-200)";
+	let downloadedResume = false;
+	let downloadedResumeAtleastOnce = false;
+	$: () => {
+		if (downloadedResume) anchorTagColor = $primaryColour;
+	};
 </script>
 
 {#if $portfolioEntered}
@@ -42,17 +47,37 @@
 		</div>
 		<div class="right" transition:fly={{ delay: 700, y: 20 }}>
 			<a
-				href="/documents/SJ's Resume.pdf"
+				style={`--anchor-tag-color: ${downloadedResume ? $primaryColour : anchorTagColor};`}
+				href="/documents/SJ's Resume 03.2024.pdf"
 				download="SJs-resume.pdf"
 				on:mouseenter={() => {
-					anchorTagColor = "white";
+					if (!downloadedResume) {
+						anchorTagColor = "white";
+					}
 				}}
 				on:mouseleave={() => {
-					anchorTagColor = "var(--neutral-200)";
+					if (!downloadedResume) {
+						anchorTagColor = "var(--neutral-200)";
+					}
+				}}
+				on:click={() => {
+					downloadedResume = true;
+					downloadedResumeAtleastOnce = true;
+					setTimeout(() => {
+						downloadedResume = false;
+					}, 10000);
 				}}
 			>
-				Download Resume
-				<Icon name="Download" size="m" color={anchorTagColor} />
+				{downloadedResume
+					? "Downloading..."
+					: downloadedResumeAtleastOnce
+						? "Download again?"
+						: "Download Resume"}
+				<Icon
+					name="Download"
+					size="m"
+					color={downloadedResume ? $primaryColour : anchorTagColor}
+				/>
 			</a>
 		</div>
 	</nav>
@@ -88,13 +113,13 @@
 	}
 
 	a {
+		color: var(--anchor-tag-color);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		gap: 8px;
 		/* background-color: rgba(0, 0, 0, 0.3); */
 		/* backdrop-filter: blur(8px); */
-		color: var(--neutral-200);
 		transition: color 0.2s;
 		-webkit-text-stroke: 0.01px black;
 		text-shadow:
@@ -103,14 +128,6 @@
 			1px -1px 0 #000,
 			-1px 1px 0 #000,
 			1px 1px 0 #000;
-	}
-
-	a:hover {
-		color: white;
-	}
-
-	a:active {
-		color: var(--neutral-200);
 	}
 
 	@media only screen and (max-width: 450px) {
